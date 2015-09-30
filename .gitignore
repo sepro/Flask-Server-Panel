@@ -53,6 +53,9 @@ docs/_build/
 # PyBuilder
 target/
 
+# PyCharm
+.idea/
+
 # =========================
 # Operating System Files
 # =========================
