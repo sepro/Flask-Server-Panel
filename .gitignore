@@ -55,6 +55,7 @@ target/
 
 # PyCharm
 .idea/
+.idea/*
 
 # =========================
 # Operating System Files
@@ -102,3 +103,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.idea/vcs.xml
+.idea/vcs.xml
+.idea/.name
