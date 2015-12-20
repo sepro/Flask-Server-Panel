@@ -1,8 +1,13 @@
-from subprocess import call, check_output
+from subprocess import check_output
+from datetime import timedelta
+
+import uptime
+import psutil
 import platform
 
 
-class ServerInfo():
+
+class ServerInfo:
     def __init__(self, app=None):
         self.server_type = None
 
@@ -10,7 +15,6 @@ class ServerInfo():
             self.init_app(app)
 
     def init_app(self, app):
-         # register extension with app
         app.extensions = getattr(app, 'extensions', {})
         app.extensions['flask-serverinfo'] = self
 
@@ -21,9 +25,25 @@ class ServerInfo():
         if self.server_type == "WIN":
             hostname = check_output(["hostname"]).decode("utf-8").strip()
         elif self.server_type == "RASPBERRY":
-            hostname = check_output(["cat", "/etc/hostname"]).decode("utf-8").strip()
+            with open('/etc/hostname', 'r') as f:
+                hostname = f.readline().strip()
 
         return hostname
 
-    def get_os_name(self):
+    @staticmethod
+    def get_os_name():
         return platform.platform()
+
+    def get_uptime(self):
+        uptime_seconds = uptime.uptime()
+        uptime_str = str(timedelta(seconds=uptime_seconds))
+
+        return uptime_str
+
+    @staticmethod
+    def get_cpu():
+        data = {'logical_cores': psutil.cpu_count(),
+                'physical_cores': psutil.cpu_count(logical=False)
+                }
+
+        return data

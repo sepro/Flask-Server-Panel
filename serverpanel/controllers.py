@@ -31,9 +31,24 @@ def api_server_hostname():
 @api.route('/server/os')
 def api_server_os():
     """
-    Returns hostname as json object
+    Returns operating system as json object
     :return:
     """
     os_name = server_info.get_os_name()
 
     return json.dumps({'os_name': os_name})
+
+
+@api.route('/server/uptime')
+def api_server_uptime():
+    """
+    Returns uptime as json object
+    :return:
+    """
+    uptime = server_info.get_uptime()
+
+    return json.dumps({'uptime': uptime})
+
+@api.route('/cpu')
+def api_cpu():
+    return json.dumps(server_info.get_cpu())
