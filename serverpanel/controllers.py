@@ -59,6 +59,24 @@ def api_system_cpu_cores():
     return server_info.get_cpu_cores()
 
 
+@api.route('/system/cpu/load')
+@jsonify
+def api_system_cpu_load():
+    return server_info.get_cpu_load()
+
+
+@api.route('/system/memory')
+@jsonify
+def api_system_memory():
+    return server_info.get_virtual_memory()
+
+
+@api.route('/system/swap')
+@jsonify
+def api_system_swap():
+    return server_info.get_swap_memory()
+
+
 @api.route('/system/disk/space')
 @jsonify
 def api_system_disk_space():

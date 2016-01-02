@@ -19,6 +19,8 @@ class ServerInfo:
 
         self.server_type = app.config['SERVER_TYPE']
 
+        psutil.cpu_percent(percpu=True, interval=None)
+
     def get_hostname(self):
         hostname = "not found"
         if self.server_type == "WIN":
@@ -48,12 +50,28 @@ class ServerInfo:
         return data
 
     @staticmethod
+    def get_cpu_load():
+        return psutil.cpu_percent(percpu=True, interval=None)
+
+    @staticmethod
+    def get_virtual_memory():
+        mem = psutil.virtual_memory()._asdict()
+
+        return mem
+
+    @staticmethod
+    def get_swap_memory():
+        mem = psutil.swap_memory()._asdict()
+
+        return mem
+
+    @staticmethod
     def get_disk_space():
         disk = [{'device': v.device,
                  'mountpoint': v.mountpoint,
                  'fstype': v.fstype,
                  'opts': v.opts,
-                 'usage': dict(psutil.disk_usage(v.mountpoint)._asdict())}
+                 'usage': psutil.disk_usage(v.mountpoint)._asdict()}
                 for v in psutil.disk_partitions() if v.fstype != '']
 
         return disk
@@ -61,7 +79,7 @@ class ServerInfo:
     @staticmethod
     def get_disk_io():
         disk_io = [{'device': k,
-                    'io': dict(v._asdict())}
+                    'io': v._asdict()}
                    for k, v in psutil.disk_io_counters(perdisk=True).items()]
 
         return disk_io
