@@ -1,6 +1,6 @@
 from flask import Blueprint
 from serverpanel import server_info
-from serverpanel.jsonify import jsonify
+from serverpanel.utils.jsonify import jsonify
 
 main = Blueprint('main', __name__)
 api = Blueprint('api', __name__)
