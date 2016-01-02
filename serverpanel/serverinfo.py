@@ -53,6 +53,15 @@ class ServerInfo:
                  'mountpoint': v.mountpoint,
                  'fstype': v.fstype,
                  'opts': v.opts,
-                 'usage': dict(psutil.disk_usage(v.mountpoint)._asdict())} for v in psutil.disk_partitions() if v.fstype != '']
+                 'usage': dict(psutil.disk_usage(v.mountpoint)._asdict())}
+                for v in psutil.disk_partitions() if v.fstype != '']
 
         return disk
+
+    @staticmethod
+    def get_disk_io():
+        disk_io = [{'device': k,
+                    'io': dict(v._asdict())}
+                   for k, v in psutil.disk_io_counters(perdisk=True).items()]
+
+        return disk_io
