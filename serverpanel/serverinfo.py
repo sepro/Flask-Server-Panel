@@ -6,7 +6,6 @@ import psutil
 import platform
 
 
-
 class ServerInfo:
     def __init__(self, app=None):
         self.server_type = None
@@ -41,9 +40,19 @@ class ServerInfo:
         return uptime_str
 
     @staticmethod
-    def get_cpu():
+    def get_cpu_cores():
         data = {'logical_cores': psutil.cpu_count(),
                 'physical_cores': psutil.cpu_count(logical=False)
                 }
 
         return data
+
+    @staticmethod
+    def get_disk_space():
+        disk = [{'device': v.device,
+                 'mountpoint': v.mountpoint,
+                 'fstype': v.fstype,
+                 'opts': v.opts,
+                 'usage': dict(psutil.disk_usage(v.mountpoint)._asdict())} for v in psutil.disk_partitions() if v.fstype != '']
+
+        return disk

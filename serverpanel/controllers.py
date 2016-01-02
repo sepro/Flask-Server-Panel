@@ -12,7 +12,7 @@ def index():
     return 'Hello world'
 
 
-@api.route('/')
+@api.route('/version')
 def api_index():
     return json.dumps({'version': '1.0', 'name': 'Flask-Sever-Panel'})
 
@@ -49,6 +49,12 @@ def api_server_uptime():
 
     return json.dumps({'uptime': uptime})
 
-@api.route('/cpu')
-def api_cpu():
-    return json.dumps(server_info.get_cpu())
+
+@api.route('/system/cpu/cores')
+def api_system_cpu_cores():
+    return json.dumps(server_info.get_cpu_cores())
+
+
+@api.route('/system/disk/space')
+def api_system_disk_space():
+    return json.dumps(server_info.get_disk_space())
