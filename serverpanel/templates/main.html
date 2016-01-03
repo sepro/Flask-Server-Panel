@@ -7,11 +7,35 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>Hello world !</h1>
-    </div>
 
+    <div id="content"></div>
+
+
+    <script src="{{ url_for('static', filename='js/react.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/react-dom.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/babel">
+
+      var ExampleApplication = React.createClass({
+        render: function() {
+          var elapsed = Math.round(this.props.elapsed  / 100);
+          var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+          var message =
+            'React has been successfully running for ' + seconds + ' seconds.';
+
+          return <p>{message}</p>;
+        }
+      });
+      var start = new Date().getTime();
+      setInterval(function() {
+        ReactDOM.render(
+          <ExampleApplication elapsed={new Date().getTime() - start} />,
+          document.getElementById('content')
+        );
+      }, 50);
+
+    </script>
 </body>
 </html>
