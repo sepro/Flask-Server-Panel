@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from serverpanel import server_info
 from serverpanel.utils.jsonify import jsonify
 
@@ -8,7 +8,7 @@ api = Blueprint('api', __name__)
 
 @main.route('/')
 def index():
-    return 'Hello world'
+    return render_template('main.html')
 
 
 @api.route('/version')

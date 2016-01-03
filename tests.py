@@ -14,6 +14,12 @@ class MyTest(TestCase):
         app.config['DEBUG'] = False
         return app
 
+    def test_main(self):
+        # check if route returns code 200
+        response = self.client.get('/')
+        self.assert_template_used('main.html')
+        self.assert200(response)
+
     def test_route_hostname(self):
         # check if route returns code 200
         response = self.client.get('/api/server/hostname')
