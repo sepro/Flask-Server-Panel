@@ -4,6 +4,7 @@ from datetime import timedelta
 import uptime
 import psutil
 import platform
+import math
 
 
 class ServerInfo:
@@ -37,7 +38,7 @@ class ServerInfo:
 
     def get_uptime(self):
         uptime_seconds = uptime.uptime()
-        uptime_str = str(timedelta(seconds=uptime_seconds))
+        uptime_str = str(timedelta(seconds=math.floor(uptime_seconds)))
 
         return uptime_str
 
