@@ -7,121 +7,18 @@
 </head>
 <body>
 
-    <div id="hostname"></div>
-    <div id="uptime"></div>
-    <div id="memory"></div>
+    <div id="hostname" url="{{url_for('api.api_server_hostname')}}"></div>
+    <div id="uptime" url="{{url_for('api.api_server_uptime')}}"></div>
+    <div id="memory" url="'{{url_for('api.api_system_memory')}}'"></div>
 
     <script src="{{ url_for('static', filename='js/react.js') }}"></script>
     <script src="{{ url_for('static', filename='js/react-dom.js') }}"></script>
     <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script type="text/babel">
-      var Uptime = React.createClass({
-        loadFromServer: function() {
-            $.ajax({
-              url: this.props.url,
-              dataType: 'json',
-              cache: false,
-              success: function(data) {
-                this.setState({data: data});
-              }.bind(this),
-              error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-              }.bind(this)
-            });
-          },
-        getInitialState: function() {
-            return {data: []};
-        },
-        componentDidMount: function() {
-            this.loadFromServer();
-            setInterval(this.loadFromServer, this.props.pollInterval);
-        },
-        render: function() {
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/uptime.jsx') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/hostname.jsx') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/memory.jsx') }}"></script>
 
-         return (<span>uptime : <strong>{ this.state.data.uptime }</strong></span>);
-
-        }
-      });
-
-    ReactDOM.render(
-      <Uptime url='{{url_for('api.api_server_uptime')}}' pollInterval={1000} />,
-      document.getElementById('uptime')
-    );
-    </script>
-    <script type="text/babel">
-      var Hostname = React.createClass({
-        loadFromServer: function() {
-            $.ajax({
-              url: this.props.url,
-              dataType: 'json',
-              cache: false,
-              success: function(data) {
-                this.setState({data: data});
-              }.bind(this),
-              error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-              }.bind(this)
-            });
-          },
-        getInitialState: function() {
-            return {data: []};
-        },
-        componentDidMount: function() {
-            this.loadFromServer();
-        },
-        render: function() {
-
-         return (<span>hostname : <strong>{ this.state.data.hostname }</strong></span>);
-
-        }
-      });
-
-    ReactDOM.render(
-      <Hostname url='{{url_for('api.api_server_hostname')}}' />,
-      document.getElementById('hostname')
-    );
-    </script>
-    <script type="text/babel">
-      var Memory = React.createClass({
-        loadFromServer: function() {
-            $.ajax({
-              url: this.props.url,
-              dataType: 'json',
-              cache: false,
-              success: function(data) {
-                this.setState({data: data});
-              }.bind(this),
-              error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-              }.bind(this)
-            });
-          },
-        getInitialState: function() {
-            return {data: []};
-        },
-        componentDidMount: function() {
-            this.loadFromServer();
-            setInterval(this.loadFromServer, this.props.pollInterval);
-        },
-        render: function() {
-
-         return (<div><h3>Memory</h3>
-         <p>Available : <strong>{ (this.state.data.available/1024**3).toFixed(2) } Gb</strong></p>
-         <p>Used : <strong>{ (this.state.data.used/1024**3).toFixed(2) } Gb</strong></p>
-         <p>Total : <strong>{ (this.state.data.total/1024**3).toFixed(2) } Gb</strong></p>
-         <p>Percent : <strong>{ (this.state.data.percent*1).toFixed(1) } %</strong></p></div>
-         );
-
-        }
-      });
-
-
-    ReactDOM.render(
-      <Memory url='{{url_for('api.api_system_memory')}}' pollInterval={5000} />,
-      document.getElementById('memory')
-    );
-    </script>
 </body>
 </html>

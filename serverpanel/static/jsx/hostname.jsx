@@ -1,4 +1,4 @@
-      var Uptime = React.createClass({
+      var Hostname = React.createClass({
         loadFromServer: function() {
             $.ajax({
               url: this.props.url,
@@ -17,16 +17,15 @@
         },
         componentDidMount: function() {
             this.loadFromServer();
-            setInterval(this.loadFromServer, this.props.pollInterval);
         },
         render: function() {
 
-         return (<span>uptime : <strong>{ this.state.data.uptime }</strong></span>);
+         return (<span>hostname : <strong>{ this.state.data.hostname }</strong></span>);
 
         }
       });
 
     ReactDOM.render(
-      <Uptime url={document.getElementById('uptime').getAttribute('url')} pollInterval={1000} />,
-      document.getElementById('uptime')
+      <Hostname url={document.getElementById('hostname').getAttribute('url')} />,
+      document.getElementById('hostname')
     );

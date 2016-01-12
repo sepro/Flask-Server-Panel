@@ -1,4 +1,4 @@
-      var Uptime = React.createClass({
+      var Memory = React.createClass({
         loadFromServer: function() {
             $.ajax({
               url: this.props.url,
@@ -21,12 +21,18 @@
         },
         render: function() {
 
-         return (<span>uptime : <strong>{ this.state.data.uptime }</strong></span>);
+         return (<div><h3>Memory</h3>
+         <p>Available : <strong>{ (this.state.data.available/1024**3).toFixed(2) } Gb</strong></p>
+         <p>Used : <strong>{ (this.state.data.used/1024**3).toFixed(2) } Gb</strong></p>
+         <p>Total : <strong>{ (this.state.data.total/1024**3).toFixed(2) } Gb</strong></p>
+         <p>Percent : <strong>{ (this.state.data.percent*1).toFixed(1) } %</strong></p></div>
+         );
 
         }
       });
 
+
     ReactDOM.render(
-      <Uptime url={document.getElementById('uptime').getAttribute('url')} pollInterval={1000} />,
-      document.getElementById('uptime')
+      <Memory url={document.getElementById('memory').getAttribute('url')} pollInterval={5000} />,
+      document.getElementById('memory')
     );
