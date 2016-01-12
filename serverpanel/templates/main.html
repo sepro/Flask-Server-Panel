@@ -10,6 +10,7 @@
         <div id="hostname" url="{{url_for('api.api_server_hostname')}}"></div>
         <div id="uptime" url="{{url_for('api.api_server_uptime')}}"></div>
         <div id="memory" url="{{url_for('api.api_system_memory')}}"></div>
+        <div id="disk" url="{{url_for('api.api_system_disk_space')}}"></div>
     </div>
 
     <script src="{{ url_for('static', filename='js/react.js') }}"></script>
@@ -20,5 +21,6 @@
     <script type="text/babel" src="{{ url_for('static', filename='jsx/uptime.jsx') }}"></script>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/hostname.jsx') }}"></script>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/memory.jsx') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/disk.jsx') }}"></script>
 </body>
 </html>
