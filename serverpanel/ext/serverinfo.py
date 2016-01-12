@@ -10,6 +10,7 @@ import math
 class ServerInfo:
     def __init__(self, app=None):
         self.server_type = None
+        self.pihole_enabled = False
 
         if app is not None:
             self.init_app(app)
@@ -18,7 +19,8 @@ class ServerInfo:
         app.extensions = getattr(app, 'extensions', {})
         app.extensions['flask-serverinfo'] = self
 
-        self.server_type = app.config['SERVER_TYPE']
+        self.server_type = app.config['SERVER_TYPE'] if 'SERVER_TYPE' in app.config.keys() else 'WIN'
+        self.pihole_enabled = app.config['ENABLE_PIHOLE'] if 'ENABLE_PIHOLE' in app.config.keys() else False
 
         psutil.cpu_percent(percpu=True, interval=None)
 
@@ -84,3 +86,22 @@ class ServerInfo:
                    for k, v in psutil.disk_io_counters(perdisk=True).items()]
 
         return disk_io
+
+    def get_pihole_stats(self):
+        if self.pihole_enabled:
+            blocked_domains = int(check_output("wc -l /etc/pihole/gravity.list | awk '{print $1}'", shell=True))
+            dns_queries_today = int(check_output("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l", shell=True))
+            ads_blocked_today = int(check_output("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l", shell=True))
+            ads_percentage_today = (ads_blocked_today * 100.00)/dns_queries_today
+
+            stats = {
+                "enabled": self.pihole_enabled,
+                "blocked_domains": blocked_domains,
+                "dns_queries_today": dns_queries_today,
+                "ads_blocked_today": ads_blocked_today,
+                "ads_percentage_today": ads_percentage_today
+            }
+
+            return stats
+        else:
+            return {"enabled": False}

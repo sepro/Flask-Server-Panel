@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app
 from serverpanel import server_info
 from serverpanel.utils.jsonify import jsonify
 
@@ -87,3 +87,9 @@ def api_system_disk_space():
 @jsonify
 def api_system_disk_io():
     return server_info.get_disk_io()
+
+
+@api.route('/pihole/stats')
+@jsonify
+def api_pihole_stats():
+    return server_info.get_pihole_stats()
