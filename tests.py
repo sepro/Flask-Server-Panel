@@ -128,6 +128,19 @@ class MyTest(TestCase):
             self.assertTrue('write_count' in disk['io'].keys())
             self.assertTrue('write_time' in disk['io'].keys())
 
+    def test_pihole(self):
+        response = self.client.get('/api/pihole/stats')
+        self.assert200(response)
+
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('enabled' in data.keys())
+
+        if data['enabled']:
+            self.assertTrue('blocked_domains' in data.keys())
+            self.assertTrue('dns_queries_today' in data.keys())
+            self.assertTrue('ads_blocked_today' in data.keys())
+            self.assertTrue('ads_percentage_today' in data.keys())
+
 
 if __name__ == '__main__':
     unittest.main()
