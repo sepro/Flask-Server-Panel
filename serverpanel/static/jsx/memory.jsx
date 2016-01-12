@@ -22,10 +22,12 @@
         render: function() {
 
          return (<div><h3>Memory</h3>
-         <p>Available : <strong>{ (this.state.data.available/1024**3).toFixed(2) } Gb</strong></p>
-         <p>Used : <strong>{ (this.state.data.used/1024**3).toFixed(2) } Gb</strong></p>
-         <p>Total : <strong>{ (this.state.data.total/1024**3).toFixed(2) } Gb</strong></p>
-         <p>Percent : <strong>{ (this.state.data.percent*1).toFixed(1) } %</strong></p></div>
+         <div className="progress">
+            <div className="progress-bar" role="progressbar" aria-valuenow="{ (this.state.data.percent*1).toFixed(0) }" aria-valuemin="0" aria-valuemax="100" style={{width: (this.state.data.percent*1).toFixed(0) + '%'}}>
+            <span className="progress-label">Used { (this.state.data.used/1024**3).toFixed(2) } / { (this.state.data.total/1024**3).toFixed(2) } Gb <span className="text-muted">(Available: { (this.state.data.available/1024**3).toFixed(2) } Gb)</span></span>
+            </div>
+        </div>
+        </div>
          );
 
         }
