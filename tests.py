@@ -128,6 +128,25 @@ class MyTest(TestCase):
             self.assertTrue('write_count' in disk['io'].keys())
             self.assertTrue('write_time' in disk['io'].keys())
 
+    def test_route_network_io(self):
+        # check if route returns code 200
+        response = self.client.get('/api/system/network/io')
+        self.assert200(response)
+
+        # check if object returned contains the desired data
+        data = json.loads(response.data.decode('utf-8'))
+        for disk in data:
+            self.assertTrue('device' in disk.keys())
+            self.assertTrue('io' in disk.keys())
+            self.assertTrue('bytes_recv' in disk['io'].keys())
+            self.assertTrue('bytes_sent' in disk['io'].keys())
+            self.assertTrue('dropin' in disk['io'].keys())
+            self.assertTrue('dropout' in disk['io'].keys())
+            self.assertTrue('errin' in disk['io'].keys())
+            self.assertTrue('errout' in disk['io'].keys())
+            self.assertTrue('packets_recv' in disk['io'].keys())
+            self.assertTrue('packets_sent' in disk['io'].keys())
+
     def test_pihole(self):
         response = self.client.get('/api/pihole/stats')
         self.assert200(response)

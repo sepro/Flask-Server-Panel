@@ -87,6 +87,13 @@ class ServerInfo:
 
         return disk_io
 
+    @staticmethod
+    def get_network_io():
+        network_io= [{'device': k,
+                      'io': v._asdict()}
+                      for k, v in psutil.net_io_counters(pernic=True).items()]
+        return network_io
+
     def get_pihole_stats(self):
         if self.pihole_enabled:
             blocked_domains = int(check_output("wc -l /etc/pihole/gravity.list | awk '{print $1}'", shell=True))

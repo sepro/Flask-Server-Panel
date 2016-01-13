@@ -89,6 +89,12 @@ def api_system_disk_io():
     return server_info.get_disk_io()
 
 
+@api.route('/system/network/io')
+@jsonify
+def api_system_network_io():
+    return server_info.get_network_io()
+
+
 @api.route('/pihole/stats')
 @jsonify
 def api_pihole_stats():
