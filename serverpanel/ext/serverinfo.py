@@ -108,6 +108,18 @@ class ServerInfo:
 
         return network_io
 
+    @staticmethod
+    def get_processes():
+        processes = []
+
+        for proc in psutil.process_iter():
+
+            processes.append({'pid': proc.pid,
+                              'name': proc.name(),
+                              'cpu_percentage': proc.cpu_percent(interval=None)})
+
+        return sorted(processes, key=lambda k: k['cpu_percentage'], reverse=True)
+
     def get_pihole_stats(self):
         if self.pihole_enabled:
             blocked_domains = int(check_output("wc -l /etc/pihole/gravity.list | awk '{print $1}'", shell=True))
