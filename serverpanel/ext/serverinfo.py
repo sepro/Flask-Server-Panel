@@ -39,7 +39,8 @@ class ServerInfo:
     def get_os_name():
         return platform.platform()
 
-    def get_uptime(self):
+    @staticmethod
+    def get_uptime():
         uptime_seconds = uptime.uptime()
         uptime_str = str(timedelta(seconds=math.floor(uptime_seconds)))
 
@@ -94,15 +95,15 @@ class ServerInfo:
 
         for device, values in psutil.net_if_addrs().items():
             for value in values:
-                if value._asdict()['family'] == socket.AF_INET:
-                    network_config[device] = value._asdict()['address']
+                if value.family == socket.AF_INET:
+                    network_config[device] = value.address
                     break
             else:
                 network_config[device] = 'unknown address'
 
-        network_io= [{'device': k,
-                      'io': v._asdict(),
-                      'address': network_config[k]}
+        network_io = [{'device': k,
+                       'io': v._asdict(),
+                       'address': network_config[k]}
                       for k, v in psutil.net_io_counters(pernic=True).items()]
 
         return network_io
