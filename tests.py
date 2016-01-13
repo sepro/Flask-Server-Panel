@@ -137,6 +137,7 @@ class MyTest(TestCase):
         data = json.loads(response.data.decode('utf-8'))
         for disk in data:
             self.assertTrue('device' in disk.keys())
+            self.assertTrue('address' in disk.keys())
             self.assertTrue('io' in disk.keys())
             self.assertTrue('bytes_recv' in disk['io'].keys())
             self.assertTrue('bytes_sent' in disk['io'].keys())

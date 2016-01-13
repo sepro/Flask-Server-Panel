@@ -5,6 +5,7 @@ import uptime
 import psutil
 import platform
 import math
+import socket
 
 
 class ServerInfo:
@@ -89,9 +90,21 @@ class ServerInfo:
 
     @staticmethod
     def get_network_io():
+        network_config = {}
+
+        for device, values in psutil.net_if_addrs().items():
+            for value in values:
+                if value._asdict()['family'] == socket.AF_INET:
+                    network_config[device] = value._asdict()['address']
+                    break
+            else:
+                network_config[device] = 'unknown address'
+
         network_io= [{'device': k,
-                      'io': v._asdict()}
+                      'io': v._asdict(),
+                      'address': network_config[k]}
                       for k, v in psutil.net_io_counters(pernic=True).items()]
+
         return network_io
 
     def get_pihole_stats(self):
