@@ -23,7 +23,9 @@ class ServerInfo:
         self.server_type = app.config['SERVER_TYPE'] if 'SERVER_TYPE' in app.config.keys() else 'WIN'
         self.pihole_enabled = app.config['ENABLE_PIHOLE'] if 'ENABLE_PIHOLE' in app.config.keys() else False
 
+        # these two functions need to be run once to give non-zero output
         psutil.cpu_percent(percpu=True, interval=None)
+        self.get_processes()
 
     def get_hostname(self):
         hostname = "not found"
