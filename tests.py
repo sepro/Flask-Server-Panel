@@ -135,18 +135,31 @@ class MyTest(TestCase):
 
         # check if object returned contains the desired data
         data = json.loads(response.data.decode('utf-8'))
-        for disk in data:
-            self.assertTrue('device' in disk.keys())
-            self.assertTrue('address' in disk.keys())
-            self.assertTrue('io' in disk.keys())
-            self.assertTrue('bytes_recv' in disk['io'].keys())
-            self.assertTrue('bytes_sent' in disk['io'].keys())
-            self.assertTrue('dropin' in disk['io'].keys())
-            self.assertTrue('dropout' in disk['io'].keys())
-            self.assertTrue('errin' in disk['io'].keys())
-            self.assertTrue('errout' in disk['io'].keys())
-            self.assertTrue('packets_recv' in disk['io'].keys())
-            self.assertTrue('packets_sent' in disk['io'].keys())
+        for network in data:
+            self.assertTrue('device' in network.keys())
+            self.assertTrue('address' in network.keys())
+            self.assertTrue('io' in network.keys())
+            self.assertTrue('bytes_recv' in network['io'].keys())
+            self.assertTrue('bytes_sent' in network['io'].keys())
+            self.assertTrue('dropin' in network['io'].keys())
+            self.assertTrue('dropout' in network['io'].keys())
+            self.assertTrue('errin' in network['io'].keys())
+            self.assertTrue('errout' in network['io'].keys())
+            self.assertTrue('packets_recv' in network['io'].keys())
+            self.assertTrue('packets_sent' in network['io'].keys())
+
+    def test_route_processes(self):
+        # check if route returns code 200
+        response = self.client.get('/api/system/processes')
+        self.assert200(response)
+
+        # check if object returned contains the desired data
+        data = json.loads(response.data.decode('utf-8'))
+        for proc in data:
+            self.assertTrue('pid' in proc.keys())
+            self.assertTrue('name' in proc.keys())
+            self.assertTrue('cpu_percentage' in proc.keys())
+
 
     def test_pihole(self):
         response = self.client.get('/api/pihole/stats')
