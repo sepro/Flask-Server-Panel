@@ -22,8 +22,8 @@
         render: function() {
 
          return (<div><h3>Disk</h3>
-         {this.state.data.map(function(disk){
-            return          <div><strong>{ disk.mountpoint }</strong><div className="progress">
+         {this.state.data.map(function(disk ,i){
+            return          <div key={i}><strong>{ disk.mountpoint }</strong><div className="progress">
             <div className="progress-bar" role="progressbar" aria-valuenow="{ (disk.usage.percent*1).toFixed(0) }" aria-valuemin="0" aria-valuemax="100" style={{width: (disk.usage.percent*1).toFixed(0) + '%'}}>
             <span className="progress-label">Used { (disk.usage.used/1024**3).toFixed(2) } / { (disk.usage.total/1024**3).toFixed(2) } Gb <span className="text-muted">(Free: { (disk.usage.free/1024**3).toFixed(2) } Gb)</span></span>
             </div>
