@@ -124,7 +124,7 @@ class ServerInfo:
 
     def get_pihole_stats(self):
         if self.pihole_enabled:
-            blocked_domains = int(check_output("wc -l /etc/pihole/pihole.3.eventHorizon.txt | awk '{print $1}'", shell=True)/2)
+            blocked_domains = int(check_output("wc -l /etc/pihole/pihole.3.eventHorizon.txt | awk '{print $1}'", shell=True))
             dns_queries_today = int(check_output("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l", shell=True))
             ads_blocked_today = int(check_output("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l", shell=True))
             ads_percentage_today = (ads_blocked_today * 100.00)/dns_queries_today
