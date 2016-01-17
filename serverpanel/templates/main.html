@@ -12,6 +12,7 @@
         <div id="memory" url="{{url_for('api.api_system_memory')}}"></div>
         <div id="swap" url="{{url_for('api.api_system_swap')}}"></div>
         <div id="disk" url="{{url_for('api.api_system_disk_space')}}"></div>
+        <div id="processes" url="{{url_for('api.api_system_processes')}}"></div>
     </div>
 
     <script src="{{ url_for('static', filename='js/react.js') }}"></script>
@@ -24,5 +25,6 @@
     <script type="text/babel" src="{{ url_for('static', filename='jsx/memory.jsx') }}"></script>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/swap.jsx') }}"></script>
     <script type="text/babel" src="{{ url_for('static', filename='jsx/disk.jsx') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='jsx/processes.jsx') }}"></script>
 </body>
 </html>
