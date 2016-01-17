@@ -22,10 +22,16 @@
         render: function() {
 
          return (<div><h3>Processes</h3>
-         {this.state.data.map(function(process ,i){
-            return <div key={i}>{process.pid}, {process.name}, {process.cpu_percentage}</div>;
+         <table className="table table-striped">
+         <thead>
+         <tr>
+         <th>PID</th><th>Name</th><th>CPU %</th></tr></thead>
+         <tbody>
+         {this.state.data.slice(0,5).map(function(process ,i){
+            return <tr key={i}><td>{process.pid}</td><td>{process.name}</td><td>{process.cpu_percentage}</td></tr>;
           })}
-
+          </tbody>
+        </table>
         </div>
          );
 
