@@ -20,7 +20,7 @@ class ServerInfo:
         app.extensions = getattr(app, 'extensions', {})
         app.extensions['flask-serverinfo'] = self
 
-        self.server_type = app.config['SERVER_TYPE'] if 'SERVER_TYPE' in app.config.keys() else 'WIN'
+        self.server_type = platform.system()
         self.pihole_enabled = app.config['ENABLE_PIHOLE'] if 'ENABLE_PIHOLE' in app.config.keys() else False
 
         # these two functions need to be run once to give non-zero output
@@ -29,9 +29,9 @@ class ServerInfo:
 
     def get_hostname(self):
         hostname = "not found"
-        if self.server_type == "WIN":
+        if self.server_type == 'Windows':
             hostname = check_output(["hostname"]).decode("utf-8").strip()
-        elif self.server_type == "RASPBERRY":
+        elif self.server_type == 'Linux':
             with open('/etc/hostname', 'r') as f:
                 hostname = f.readline().strip()
 
