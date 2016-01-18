@@ -24,7 +24,7 @@
               return (<div><h3>PiHole</h3>
                  <p>DNS queries today: { this.state.data.dns_queries_today }</p>
                  <p>Ads blocked today: { this.state.data.ads_blocked_today }</p>
-                 <p>Percentage blocked: { this.state.data.ads_percentage_today.toFixed(2) }</p>
+                 <p>Percentage blocked: { this.state.data.ads_percentage_today.toFixed(2) } %</p>
                  <p>Blocked domains: { this.state.data.blocked_domains }</p>
                  </div>);
                 } else {
