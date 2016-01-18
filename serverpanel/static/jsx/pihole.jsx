@@ -21,11 +21,21 @@
         },
         render: function() {
             if (this.state.data.enabled) {
-              return (<div><h3>PiHole</h3>
+              return (<div><h3>Pi-Hole</h3>
+              <div className="row">
+                 <div className="col-lg-3 col-xs-6">
                  <p>DNS queries today: { this.state.data.dns_queries_today }</p>
+                 </div>
+                 <div className="col-lg-3 col-xs-6">
                  <p>Ads blocked today: { this.state.data.ads_blocked_today }</p>
+                 </div>
+                 <div className="col-lg-3 col-xs-6">
                  <p>Percentage blocked: { this.state.data.ads_percentage_today.toFixed(2) } %</p>
+                 </div>
+                 <div className="col-lg-3 col-xs-6">
                  <p>Blocked domains: { this.state.data.blocked_domains }</p>
+                 </div>
+              </div>
                  </div>);
                 } else {
                     return (<div></div>);
