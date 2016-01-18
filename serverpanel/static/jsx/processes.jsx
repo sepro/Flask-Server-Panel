@@ -21,7 +21,7 @@
         },
         render: function() {
 
-         return (<div><h3>Processes</h3>
+         return (<div><h3>Processes <small>(Top 5)</small></h3>
          <table className="table table-striped">
          <thead>
          <tr>

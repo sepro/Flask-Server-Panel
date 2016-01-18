@@ -37,7 +37,7 @@
                  </div>
                  <div className="col-lg-3 col-xs-6  text-center">
                  <h4>{ this.state.data.blocked_domains }</h4>
-                 <p>Blocked domains</p>
+                 <p>Domains blocked</p>
                  </div>
               </div>
                  </div>);
