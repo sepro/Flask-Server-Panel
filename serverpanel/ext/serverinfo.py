@@ -115,10 +115,11 @@ class ServerInfo:
         processes = []
 
         for proc in psutil.process_iter():
-
-            processes.append({'pid': proc.pid,
-                              'name': proc.name(),
-                              'cpu_percentage': proc.cpu_percent(interval=None)})
+            # Ignore PID 0 (System idle on windows machines)
+            if proc.pid != 0:
+                processes.append({'pid': proc.pid,
+                                  'name': proc.name(),
+                                  'cpu_percentage': proc.cpu_percent(interval=None)})
 
         return sorted(processes, key=lambda k: k['cpu_percentage'], reverse=True)
 
