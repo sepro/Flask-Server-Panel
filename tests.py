@@ -20,6 +20,14 @@ class MyTest(TestCase):
         self.assert_template_used('main.html')
         self.assert200(response)
 
+    def test_api_details(self):
+        # check if route returns code 200
+        response = self.client.get('/api/version')
+        self.assert200(response)
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('name' in data.keys())
+        self.assertTrue('version' in data.keys())
+
     def test_route_hostname(self):
         # check if route returns code 200
         response = self.client.get('/api/server/hostname')
@@ -159,7 +167,6 @@ class MyTest(TestCase):
             self.assertTrue('pid' in proc.keys())
             self.assertTrue('name' in proc.keys())
             self.assertTrue('cpu_percentage' in proc.keys())
-
 
     def test_pihole(self):
         response = self.client.get('/api/pihole/stats')
