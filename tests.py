@@ -3,6 +3,7 @@ from serverpanel import create_app
 
 from flask.ext.testing import TestCase
 
+import platform
 import unittest
 import json
 
@@ -168,18 +169,27 @@ class MyTest(TestCase):
             self.assertTrue('name' in proc.keys())
             self.assertTrue('cpu_percentage' in proc.keys())
 
-    def test_pihole(self):
+    def test_pihole_disabled(self):
+        self.app.extensions['flask-serverinfo'].pihole_enabled = False
         response = self.client.get('/api/pihole/stats')
         self.assert200(response)
 
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('enabled' in data.keys())
 
-        if data['enabled']:
-            self.assertTrue('blocked_domains' in data.keys())
-            self.assertTrue('dns_queries_today' in data.keys())
-            self.assertTrue('ads_blocked_today' in data.keys())
-            self.assertTrue('ads_percentage_today' in data.keys())
+    @unittest.skipIf(platform.system() != 'Linux', "PiHole only available on linux")
+    def test_pihole_enabled(self):
+        self.app.extensions['flask-serverinfo'].pihole_enabled = True
+
+        response = self.client.get('/api/pihole/stats')
+        self.assert200(response)
+
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('enabled' in data.keys())
+        self.assertTrue('blocked_domains' in data.keys())
+        self.assertTrue('dns_queries_today' in data.keys())
+        self.assertTrue('ads_blocked_today' in data.keys())
+        self.assertTrue('ads_percentage_today' in data.keys())
 
 
 if __name__ == '__main__':
