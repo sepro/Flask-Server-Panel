@@ -27,15 +27,9 @@ class ServerInfo:
         psutil.cpu_percent(percpu=True, interval=None)
         self.get_processes()
 
-    def get_hostname(self):
-        hostname = "not found"
-        if self.server_type == 'Windows':
-            hostname = check_output(["hostname"]).decode("utf-8").strip()
-        elif self.server_type == 'Linux':
-            with open('/etc/hostname', 'r') as f:
-                hostname = f.readline().strip()
-
-        return hostname
+    @staticmethod
+    def get_hostname():
+        return socket.gethostname()
 
     @staticmethod
     def get_os_name():
