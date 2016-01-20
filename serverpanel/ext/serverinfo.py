@@ -11,7 +11,10 @@ import socket
 class ServerInfo:
     def __init__(self, app=None):
         self.server_type = None
+
         self.pihole_enabled = False
+        self.pihole_blocked_domains = '/etc/pihole/pihole.3.eventHorizon.txt'
+        self.pihole_log = '/var/log/pihole.log'
 
         if app is not None:
             self.init_app(app)
@@ -119,9 +122,9 @@ class ServerInfo:
 
     def get_pihole_stats(self):
         if self.pihole_enabled:
-            blocked_domains = int(check_output("wc -l /etc/pihole/pihole.3.eventHorizon.txt | awk '{print $1}'", shell=True))
-            dns_queries_today = int(check_output("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l", shell=True))
-            ads_blocked_today = int(check_output("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l", shell=True))
+            blocked_domains = int(check_output("wc -l " + self.pihole_blocked_domains + " | awk '{print $1}'", shell=True))
+            dns_queries_today = int(check_output("cat " + self.pihole_log + " | awk '/query/ {print $6}' | wc -l", shell=True))
+            ads_blocked_today = int(check_output("cat " + self.pihole_log + " | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l", shell=True))
             ads_percentage_today = (ads_blocked_today * 100.00)/dns_queries_today if dns_queries_today > 0 else 0
 
             stats = {
