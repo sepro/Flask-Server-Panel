@@ -9,6 +9,9 @@ python:
 
 # install codecov
 before_install:
+  - sudo mkdir /etc/pihole
+  - sudo echo "1" > /etc/pihole/pihole.3.eventHorizon.txt
+  - sudo echo "1" > /var/log/pihole.log
   - pip install codecov
 
 # command to install dependencies
