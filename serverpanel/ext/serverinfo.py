@@ -1,4 +1,3 @@
-from subprocess import check_output
 from datetime import timedelta
 
 import uptime
@@ -122,9 +121,15 @@ class ServerInfo:
 
     def get_pihole_stats(self):
         if self.pihole_enabled:
-            blocked_domains = int(check_output("wc -l " + self.pihole_blocked_domains + " | awk '{print $1}'", shell=True))
-            dns_queries_today = int(check_output("cat " + self.pihole_log + " | awk '/query/ {print $6}' | wc -l", shell=True))
-            ads_blocked_today = int(check_output("cat " + self.pihole_log + " | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l", shell=True))
+            with open(self.pihole_blocked_domains) as f:
+                blocked_domains = sum(1 for line in f)
+
+            with open(self.pihole_log) as f:
+                dns_queries_today = sum(1 if 'query' in line else 0 for line in f)
+
+            with open(self.pihole_log) as f:
+                ads_blocked_today = sum(1 if '/etc/pihole/gravity.list' in line and 'address' not in line else 0 for line in f)
+
             ads_percentage_today = (ads_blocked_today * 100.00)/dns_queries_today if dns_queries_today > 0 else 0
 
             stats = {

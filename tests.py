@@ -178,7 +178,6 @@ class MyTest(TestCase):
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('enabled' in data.keys())
 
-    @unittest.skipIf(platform.system() != 'Linux', "PiHole only available on linux")
     def test_pihole_enabled(self):
         self.app.extensions['flask-serverinfo'].pihole_enabled = True
         h, self.app.extensions['flask-serverinfo'].pihole_blocked_domains = tempfile.mkstemp(text="1")
