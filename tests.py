@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 from serverpanel import create_app
+from serverpanel.ext.serverinfo import ServerInfo
 
 from flask.ext.testing import TestCase
 
-import platform
 import unittest
 import json
 import tempfile
@@ -14,7 +14,17 @@ class MyTest(TestCase):
     def create_app(self):
         app = create_app('config')
         app.config['DEBUG'] = False
+
         return app
+
+    def test_creation(self):
+        self.app.config['ENABLE_PIHOLE'] = False
+        server_info = ServerInfo(self.app)
+        self.assertFalse(server_info.pihole_enabled)
+
+        self.app.config['ENABLE_PIHOLE'] = True
+        server_info = ServerInfo(self.app)
+        self.assertTrue(server_info.pihole_enabled)
 
     def test_main(self):
         # check if route returns code 200
