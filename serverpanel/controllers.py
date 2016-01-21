@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, url_for
 from serverpanel import server_info
 from serverpanel.utils.jsonify import jsonify
 
@@ -11,10 +11,39 @@ def index():
     return render_template('main.html')
 
 
-@api.route('/version')
+@api.route('/')
 @jsonify
 def api_index():
+    return {'version': url_for('api.api_version'),
+            'server': {
+                'hostname': url_for('api.api_server_hostname'),
+                'os': url_for('api.api_server_os'),
+                'uptime': url_for('api.api_server_uptime')
+                },
+            'system': {
+                'memory': url_for('api.api_system_memory'),
+                'swap': url_for('api.api_system_swap'),
+                'processes': url_for('api.api_system_processes')
+                },
+            'pihole': {
+                'stats': url_for('api.api_pihole_stats')
+                }
+            }
+
+
+@api.route('/version')
+@jsonify
+def api_version():
     return {'version': '1.0', 'name': 'Flask-Sever-Panel'}
+
+
+@api.route('/server')
+@jsonify
+def api_server():
+    return {'hostname': url_for('api.api_server_hostname'),
+            'os': url_for('api.api_server_os'),
+            'uptime': url_for('api.api_server_uptime')
+            }
 
 
 @api.route('/server/hostname')
@@ -99,6 +128,7 @@ def api_system_network_io():
 @jsonify
 def api_system_processes():
     return server_info.get_processes()
+
 
 @api.route('/pihole/stats')
 @jsonify
