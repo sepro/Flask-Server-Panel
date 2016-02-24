@@ -62,6 +62,10 @@
 
 	var _swap2 = _interopRequireDefault(_swap);
 
+	var _disk = __webpack_require__(165);
+
+	var _disk2 = _interopRequireDefault(_disk);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
@@ -20066,6 +20070,80 @@
 	}(_timed_component2.default);
 
 	_reactDom2.default.render(_react2.default.createElement(Swap, { url: document.getElementById('swap').getAttribute('url'), pollInterval: 5000 }), document.getElementById('swap'));
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _progressbar = __webpack_require__(163);
+
+	var _progressbar2 = _interopRequireDefault(_progressbar);
+
+	var _timed_component = __webpack_require__(161);
+
+	var _timed_component2 = _interopRequireDefault(_timed_component);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Disk = function (_TimedComponent) {
+	        _inherits(Disk, _TimedComponent);
+
+	        function Disk() {
+	                _classCallCheck(this, Disk);
+
+	                return _possibleConstructorReturn(this, Object.getPrototypeOf(Disk).apply(this, arguments));
+	        }
+
+	        _createClass(Disk, [{
+	                key: 'render',
+	                value: function render() {
+
+	                        return _react2.default.createElement(
+	                                'div',
+	                                null,
+	                                _react2.default.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'Disk'
+	                                ),
+	                                this.state.data.map(function (disk, i) {
+	                                        return _react2.default.createElement(
+	                                                'div',
+	                                                { key: i },
+	                                                _react2.default.createElement(
+	                                                        'strong',
+	                                                        null,
+	                                                        disk.mountpoint
+	                                                ),
+	                                                _react2.default.createElement(_progressbar2.default, { used: disk.usage.used, total: disk.usage.total, free: disk.usage.free, percent: disk.usage.percent })
+	                                        );
+	                                })
+	                        );
+	                }
+	        }]);
+
+	        return Disk;
+	}(_timed_component2.default);
+
+	_reactDom2.default.render(_react2.default.createElement(Disk, { url: document.getElementById('disk').getAttribute('url'), pollInterval: 5000 }), document.getElementById('disk'));
 
 /***/ }
 /******/ ]);
