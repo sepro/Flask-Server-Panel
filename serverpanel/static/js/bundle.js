@@ -54,15 +54,11 @@
 
 	var _uptime2 = _interopRequireDefault(_uptime);
 
-	var _memory = __webpack_require__(161);
+	var _memory = __webpack_require__(162);
 
 	var _memory2 = _interopRequireDefault(_memory);
 
-	var _progressbar = __webpack_require__(162);
-
-	var _progressbar2 = _interopRequireDefault(_progressbar);
-
-	var _swap = __webpack_require__(163);
+	var _swap = __webpack_require__(164);
 
 	var _swap2 = _interopRequireDefault(_swap);
 
@@ -19755,6 +19751,10 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _timed_component = __webpack_require__(161);
+
+	var _timed_component2 = _interopRequireDefault(_timed_component);
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -19771,19 +19771,73 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Uptime = function (_React$Component) {
-	    _inherits(Uptime, _React$Component);
+	var Uptime = function (_TimedComponent) {
+	  _inherits(Uptime, _TimedComponent);
 
-	    function Uptime(props) {
-	        _classCallCheck(this, Uptime);
+	  function Uptime() {
+	    _classCallCheck(this, Uptime);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Uptime).call(this, props));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Uptime).apply(this, arguments));
+	  }
+
+	  _createClass(Uptime, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'span',
+	        null,
+	        'uptime : ',
+	        _react2.default.createElement(
+	          'strong',
+	          null,
+	          this.state.data.uptime
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Uptime;
+	}(_timed_component2.default);
+
+	_reactDom2.default.render(_react2.default.createElement(Uptime, { url: document.getElementById('uptime').getAttribute('url'), pollInterval: 1000 }), document.getElementById('uptime'));
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TimedComponent = function (_React$Component) {
+	    _inherits(TimedComponent, _React$Component);
+
+	    function TimedComponent(props) {
+	        _classCallCheck(this, TimedComponent);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TimedComponent).call(this, props));
 
 	        _this.state = { data: [] };
 	        return _this;
 	    }
 
-	    _createClass(Uptime, [{
+	    _createClass(TimedComponent, [{
 	        key: 'loadFromServer',
 	        value: function loadFromServer() {
 	            var _this2 = this;
@@ -19805,29 +19859,15 @@
 	            this.loadFromServer();
 	            setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
 	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'span',
-	                null,
-	                'uptime : ',
-	                _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    this.state.data.uptime
-	                )
-	            );
-	        }
 	    }]);
 
-	    return Uptime;
+	    return TimedComponent;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(Uptime, { url: document.getElementById('uptime').getAttribute('url'), pollInterval: 1000 }), document.getElementById('uptime'));
+	exports.default = TimedComponent;
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19842,9 +19882,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _progressbar = __webpack_require__(162);
+	var _progressbar = __webpack_require__(163);
 
 	var _progressbar2 = _interopRequireDefault(_progressbar);
+
+	var _timed_component = __webpack_require__(161);
+
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19854,41 +19898,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Memory = function (_React$Component) {
-	    _inherits(Memory, _React$Component);
+	var Memory = function (_TimedComponent) {
+	    _inherits(Memory, _TimedComponent);
 
-	    function Memory(props) {
+	    function Memory() {
 	        _classCallCheck(this, Memory);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Memory).call(this, props));
-
-	        _this.state = { data: [] };
-	        return _this;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Memory).apply(this, arguments));
 	    }
 
 	    _createClass(Memory, [{
-	        key: 'loadFromServer',
-	        value: function loadFromServer() {
-	            var _this2 = this;
-
-	            $.ajax({
-	                url: this.props.url,
-	                dataType: 'json',
-	                success: function success(data) {
-	                    _this2.setState({ data: data });
-	                },
-	                error: function error(xhr, status, err) {
-	                    console.error(_this2.props.url, status, err.toString());
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            this.loadFromServer();
-	            setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 
@@ -19906,14 +19925,14 @@
 	    }]);
 
 	    return Memory;
-	}(_react2.default.Component);
+	}(_timed_component2.default);
 
 	;
 
 	_reactDom2.default.render(_react2.default.createElement(Memory, { url: document.getElementById('memory').getAttribute('url'), pollInterval: 5000 }), document.getElementById('memory'));
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19986,7 +20005,7 @@
 	exports.default = ProgressBar;
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20001,9 +20020,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _progressbar = __webpack_require__(162);
+	var _progressbar = __webpack_require__(163);
 
 	var _progressbar2 = _interopRequireDefault(_progressbar);
+
+	var _timed_component = __webpack_require__(161);
+
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20013,41 +20036,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Swap = function (_React$Component) {
-	    _inherits(Swap, _React$Component);
+	var Swap = function (_TimedComponent) {
+	    _inherits(Swap, _TimedComponent);
 
-	    function Swap(props) {
+	    function Swap() {
 	        _classCallCheck(this, Swap);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Swap).call(this, props));
-
-	        _this.state = { data: [] };
-	        return _this;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Swap).apply(this, arguments));
 	    }
 
 	    _createClass(Swap, [{
-	        key: 'loadFromServer',
-	        value: function loadFromServer() {
-	            var _this2 = this;
-
-	            $.ajax({
-	                url: this.props.url,
-	                dataType: 'json',
-	                success: function success(data) {
-	                    _this2.setState({ data: data });
-	                },
-	                error: function error(xhr, status, err) {
-	                    console.error(_this2.props.url, status, err.toString());
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            this.loadFromServer();
-	            setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 
@@ -20065,7 +20063,7 @@
 	    }]);
 
 	    return Swap;
-	}(_react2.default.Component);
+	}(_timed_component2.default);
 
 	_reactDom2.default.render(_react2.default.createElement(Swap, { url: document.getElementById('swap').getAttribute('url'), pollInterval: 5000 }), document.getElementById('swap'));
 
