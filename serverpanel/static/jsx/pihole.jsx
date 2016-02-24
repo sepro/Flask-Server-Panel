@@ -33,7 +33,4 @@ class Pihole extends TimedComponent{
       }
 
 
-    ReactDOM.render(
-      <Pihole url={document.getElementById('pihole').getAttribute('url')} pollInterval={10000} />,
-      document.getElementById('pihole')
-    );
+export default Pihole;

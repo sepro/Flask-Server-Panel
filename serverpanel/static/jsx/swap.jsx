@@ -15,8 +15,4 @@ class Swap extends TimedComponent {
         }
     }
 
-
-    ReactDOM.render(
-      <Swap url={document.getElementById('swap').getAttribute('url')} pollInterval={5000} />,
-      document.getElementById('swap')
-    );
+export default Swap;

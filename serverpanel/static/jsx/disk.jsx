@@ -21,7 +21,4 @@ class Disk extends TimedComponent {
       }
 
 
-ReactDOM.render(
-  <Disk url={document.getElementById('disk').getAttribute('url')} pollInterval={5000} />,
-  document.getElementById('disk')
-);
+export default Disk;

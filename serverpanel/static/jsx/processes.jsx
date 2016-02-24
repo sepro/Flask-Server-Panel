@@ -23,7 +23,4 @@ class Processes extends TimedComponent{
       }
 
 
-    ReactDOM.render(
-      <Processes url={document.getElementById('processes').getAttribute('url')} pollInterval={5000} />,
-      document.getElementById('processes')
-    );
+export default Processes;

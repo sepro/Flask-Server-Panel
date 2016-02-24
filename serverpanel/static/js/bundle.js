@@ -20038,6 +20038,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -20093,13 +20097,17 @@
 	    return Swap;
 	}(_timed_component2.default);
 
-	_reactDom2.default.render(_react2.default.createElement(Swap, { url: document.getElementById('swap').getAttribute('url'), pollInterval: 5000 }), document.getElementById('swap'));
+	exports.default = Swap;
 
 /***/ },
 /* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	        value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -20167,13 +20175,17 @@
 	        return Disk;
 	}(_timed_component2.default);
 
-	_reactDom2.default.render(_react2.default.createElement(Disk, { url: document.getElementById('disk').getAttribute('url'), pollInterval: 5000 }), document.getElementById('disk'));
+	exports.default = Disk;
 
 /***/ },
 /* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	        value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -20282,13 +20294,17 @@
 	        return Processes;
 	}(_timed_component2.default);
 
-	_reactDom2.default.render(_react2.default.createElement(Processes, { url: document.getElementById('processes').getAttribute('url'), pollInterval: 5000 }), document.getElementById('processes'));
+	exports.default = Processes;
 
 /***/ },
 /* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -20313,98 +20329,98 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Pihole = function (_TimedComponent) {
-	  _inherits(Pihole, _TimedComponent);
+	   _inherits(Pihole, _TimedComponent);
 
-	  function Pihole() {
-	    _classCallCheck(this, Pihole);
+	   function Pihole() {
+	      _classCallCheck(this, Pihole);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Pihole).apply(this, arguments));
-	  }
+	      return _possibleConstructorReturn(this, Object.getPrototypeOf(Pihole).apply(this, arguments));
+	   }
 
-	  _createClass(Pihole, [{
-	    key: 'render',
-	    value: function render() {
-	      if (this.state.data.enabled) {
-	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'Pi-Hole'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-lg-3 col-xs-6 text-center' },
-	              _react2.default.createElement(
-	                'h4',
-	                null,
-	                this.state.data.dns_queries_today
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'DNS queries today'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-lg-3 col-xs-6  text-center' },
-	              _react2.default.createElement(
-	                'h4',
-	                null,
-	                this.state.data.ads_blocked_today
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Ads blocked today'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-lg-3 col-xs-6  text-center' },
-	              _react2.default.createElement(
-	                'h4',
-	                null,
-	                this.state.data.ads_percentage_today.toFixed(2),
-	                ' %'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Percentage blocked'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-lg-3 col-xs-6  text-center' },
-	              _react2.default.createElement(
-	                'h4',
-	                null,
-	                this.state.data.blocked_domains
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Domains blocked'
-	              )
-	            )
-	          )
-	        );
-	      } else {
-	        return _react2.default.createElement('div', null);
+	   _createClass(Pihole, [{
+	      key: 'render',
+	      value: function render() {
+	         if (this.state.data.enabled) {
+	            return _react2.default.createElement(
+	               'div',
+	               null,
+	               _react2.default.createElement(
+	                  'h3',
+	                  null,
+	                  'Pi-Hole'
+	               ),
+	               _react2.default.createElement(
+	                  'div',
+	                  { className: 'row' },
+	                  _react2.default.createElement(
+	                     'div',
+	                     { className: 'col-lg-3 col-xs-6 text-center' },
+	                     _react2.default.createElement(
+	                        'h4',
+	                        null,
+	                        this.state.data.dns_queries_today
+	                     ),
+	                     _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'DNS queries today'
+	                     )
+	                  ),
+	                  _react2.default.createElement(
+	                     'div',
+	                     { className: 'col-lg-3 col-xs-6  text-center' },
+	                     _react2.default.createElement(
+	                        'h4',
+	                        null,
+	                        this.state.data.ads_blocked_today
+	                     ),
+	                     _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Ads blocked today'
+	                     )
+	                  ),
+	                  _react2.default.createElement(
+	                     'div',
+	                     { className: 'col-lg-3 col-xs-6  text-center' },
+	                     _react2.default.createElement(
+	                        'h4',
+	                        null,
+	                        this.state.data.ads_percentage_today.toFixed(2),
+	                        ' %'
+	                     ),
+	                     _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Percentage blocked'
+	                     )
+	                  ),
+	                  _react2.default.createElement(
+	                     'div',
+	                     { className: 'col-lg-3 col-xs-6  text-center' },
+	                     _react2.default.createElement(
+	                        'h4',
+	                        null,
+	                        this.state.data.blocked_domains
+	                     ),
+	                     _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Domains blocked'
+	                     )
+	                  )
+	               )
+	            );
+	         } else {
+	            return _react2.default.createElement('div', null);
+	         }
 	      }
-	    }
-	  }]);
+	   }]);
 
-	  return Pihole;
+	   return Pihole;
 	}(_timed_component2.default);
 
-	_reactDom2.default.render(_react2.default.createElement(Pihole, { url: document.getElementById('pihole').getAttribute('url'), pollInterval: 10000 }), document.getElementById('pihole'));
+	exports.default = Pihole;
 
 /***/ },
 /* 168 */
@@ -20433,6 +20449,22 @@
 	var _memory = __webpack_require__(162);
 
 	var _memory2 = _interopRequireDefault(_memory);
+
+	var _swap = __webpack_require__(164);
+
+	var _swap2 = _interopRequireDefault(_swap);
+
+	var _disk = __webpack_require__(165);
+
+	var _disk2 = _interopRequireDefault(_disk);
+
+	var _processes = __webpack_require__(166);
+
+	var _processes2 = _interopRequireDefault(_processes);
+
+	var _pihole = __webpack_require__(167);
+
+	var _pihole2 = _interopRequireDefault(_pihole);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20484,7 +20516,11 @@
 	                    null,
 	                    _react2.default.createElement(_hostname2.default, { url: this.state.data.server.hostname }),
 	                    _react2.default.createElement(_uptime2.default, { url: this.state.data.server.uptime, pollInterval: 1000 }),
-	                    _react2.default.createElement(_memory2.default, { url: this.state.data.system.memory, pollInterval: 10000 })
+	                    _react2.default.createElement(_memory2.default, { url: this.state.data.system.memory, pollInterval: 10000 }),
+	                    _react2.default.createElement(_swap2.default, { url: this.state.data.system.swap, pollInterval: 10000 }),
+	                    _react2.default.createElement(_disk2.default, { url: this.state.data.system.disk_space, pollInterval: 10000 }),
+	                    _react2.default.createElement(_processes2.default, { url: this.state.data.system.processes, pollInterval: 10000 }),
+	                    _react2.default.createElement(_pihole2.default, { url: this.state.data.pihole.stats, pollInterval: 20000 })
 	                );
 	            } else {
 	                return _react2.default.createElement('div', null);

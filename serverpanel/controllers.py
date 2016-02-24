@@ -23,7 +23,8 @@ def api_index():
             'system': {
                 'memory': url_for('api.api_system_memory'),
                 'swap': url_for('api.api_system_swap'),
-                'processes': url_for('api.api_system_processes')
+                'processes': url_for('api.api_system_processes'),
+                'disk_space': url_for('api.api_system_disk_space')
                 },
             'pihole': {
                 'stats': url_for('api.api_pihole_stats')
