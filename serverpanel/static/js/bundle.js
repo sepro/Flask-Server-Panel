@@ -66,6 +66,10 @@
 
 	var _disk2 = _interopRequireDefault(_disk);
 
+	var _processes = __webpack_require__(166);
+
+	var _processes2 = _interopRequireDefault(_processes);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
@@ -20144,6 +20148,121 @@
 	}(_timed_component2.default);
 
 	_reactDom2.default.render(_react2.default.createElement(Disk, { url: document.getElementById('disk').getAttribute('url'), pollInterval: 5000 }), document.getElementById('disk'));
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _timed_component = __webpack_require__(161);
+
+	var _timed_component2 = _interopRequireDefault(_timed_component);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Processes = function (_TimedComponent) {
+	        _inherits(Processes, _TimedComponent);
+
+	        function Processes() {
+	                _classCallCheck(this, Processes);
+
+	                return _possibleConstructorReturn(this, Object.getPrototypeOf(Processes).apply(this, arguments));
+	        }
+
+	        _createClass(Processes, [{
+	                key: 'render',
+	                value: function render() {
+
+	                        return _react2.default.createElement(
+	                                'div',
+	                                null,
+	                                _react2.default.createElement(
+	                                        'h3',
+	                                        null,
+	                                        'Processes ',
+	                                        _react2.default.createElement(
+	                                                'small',
+	                                                null,
+	                                                '(Top 5)'
+	                                        )
+	                                ),
+	                                _react2.default.createElement(
+	                                        'table',
+	                                        { className: 'table table-striped' },
+	                                        _react2.default.createElement(
+	                                                'thead',
+	                                                null,
+	                                                _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                                'th',
+	                                                                null,
+	                                                                'PID'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                                'th',
+	                                                                null,
+	                                                                'Name'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                                'th',
+	                                                                null,
+	                                                                'CPU %'
+	                                                        )
+	                                                )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                                'tbody',
+	                                                null,
+	                                                this.state.data.slice(0, 5).map(function (process, i) {
+	                                                        return _react2.default.createElement(
+	                                                                'tr',
+	                                                                { key: i },
+	                                                                _react2.default.createElement(
+	                                                                        'td',
+	                                                                        null,
+	                                                                        process.pid
+	                                                                ),
+	                                                                _react2.default.createElement(
+	                                                                        'td',
+	                                                                        null,
+	                                                                        process.name
+	                                                                ),
+	                                                                _react2.default.createElement(
+	                                                                        'td',
+	                                                                        null,
+	                                                                        process.cpu_percentage
+	                                                                )
+	                                                        );
+	                                                })
+	                                        )
+	                                )
+	                        );
+	                }
+	        }]);
+
+	        return Processes;
+	}(_timed_component2.default);
+
+	_reactDom2.default.render(_react2.default.createElement(Processes, { url: document.getElementById('processes').getAttribute('url'), pollInterval: 5000 }), document.getElementById('processes'));
 
 /***/ }
 /******/ ]);
