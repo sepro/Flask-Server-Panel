@@ -58,6 +58,10 @@
 
 	var _uptime2 = _interopRequireDefault(_uptime);
 
+	var _memory = __webpack_require__(162);
+
+	var _memory2 = _interopRequireDefault(_memory);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
@@ -19866,6 +19870,111 @@
 	}(_react2.default.Component);
 
 	_reactDom2.default.render(_react2.default.createElement(Uptime, { url: document.getElementById('uptime').getAttribute('url'), pollInterval: 1000 }), document.getElementById('uptime'));
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Memory = function (_React$Component) {
+	    _inherits(Memory, _React$Component);
+
+	    function Memory(props) {
+	        _classCallCheck(this, Memory);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Memory).call(this, props));
+
+	        _this.state = { data: [] };
+	        return _this;
+	    }
+
+	    _createClass(Memory, [{
+	        key: 'loadFromServer',
+	        value: function loadFromServer() {
+	            var _this2 = this;
+
+	            $.ajax({
+	                url: this.props.url,
+	                dataType: 'json',
+	                success: function success(data) {
+	                    _this2.setState({ data: data });
+	                },
+	                error: function error(xhr, status, err) {
+	                    console.error(_this2.props.url, status, err.toString());
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.loadFromServer();
+	            setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h3',
+	                    null,
+	                    'Memory'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'progress' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'progress-bar', role: 'progressbar', 'aria-valuenow': '{ (this.state.data.percent*1).toFixed(0) }', 'aria-valuemin': '0', 'aria-valuemax': '100', style: { width: (this.state.data.percent * 1).toFixed(0) + '%' } },
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'progress-label' },
+	                            'Used ',
+	                            (this.state.data.used / 1073741824).toFixed(2),
+	                            ' / ',
+	                            (this.state.data.total / 1073741824).toFixed(2),
+	                            ' Gb ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'text-muted' },
+	                                '(Available: ',
+	                                (this.state.data.available / 1073741824).toFixed(2),
+	                                ' Gb)'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Memory;
+	}(_react2.default.Component);
+
+	;
+
+	_reactDom2.default.render(_react2.default.createElement(Memory, { url: document.getElementById('memory').getAttribute('url'), pollInterval: 5000 }), document.getElementById('memory'));
 
 /***/ }
 /******/ ]);
