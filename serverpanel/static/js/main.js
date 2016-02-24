@@ -5,3 +5,5 @@ import Swap from '../jsx/swap.jsx';
 import Disk from '../jsx/disk.jsx';
 import Processes from '../jsx/processes.jsx';
 import Pihole from '../jsx/pihole.jsx';
+
+import Panel from '../jsx/panel.jsx';

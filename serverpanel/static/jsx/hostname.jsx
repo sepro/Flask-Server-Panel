@@ -25,11 +25,8 @@ class Hostname extends React.Component{
     }
 
     render() {
-      return (<span>hostname : <strong>{ this.state.data.hostname }</strong></span>);
+      return (<div>hostname : <strong>{ this.state.data.hostname }</strong></div>);
     }
 }
 
-ReactDOM.render(
-  <Hostname url={document.getElementById('hostname').getAttribute('url')} />,
-  document.getElementById('hostname')
-);
+export default Hostname;

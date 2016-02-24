@@ -74,6 +74,10 @@
 
 	var _pihole2 = _interopRequireDefault(_pihole);
 
+	var _panel = __webpack_require__(168);
+
+	var _panel2 = _interopRequireDefault(_panel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
@@ -81,6 +85,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -137,7 +145,7 @@
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'span',
+	                'div',
 	                null,
 	                'hostname : ',
 	                _react2.default.createElement(
@@ -152,7 +160,7 @@
 	    return Hostname;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(Hostname, { url: document.getElementById('hostname').getAttribute('url') }), document.getElementById('hostname'));
+	exports.default = Hostname;
 
 /***/ },
 /* 2 */
@@ -19761,6 +19769,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _timed_component = __webpack_require__(161);
@@ -19796,7 +19808,7 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'span',
+	        'div',
 	        null,
 	        'uptime : ',
 	        _react2.default.createElement(
@@ -19811,7 +19823,7 @@
 	  return Uptime;
 	}(_timed_component2.default);
 
-	_reactDom2.default.render(_react2.default.createElement(Uptime, { url: document.getElementById('uptime').getAttribute('url'), pollInterval: 1000 }), document.getElementById('uptime'));
+	exports.default = Uptime;
 
 /***/ },
 /* 161 */
@@ -19884,6 +19896,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -19941,7 +19957,7 @@
 
 	;
 
-	_reactDom2.default.render(_react2.default.createElement(Memory, { url: document.getElementById('memory').getAttribute('url'), pollInterval: 5000 }), document.getElementById('memory'));
+	exports.default = Memory;
 
 /***/ },
 /* 163 */
@@ -20389,6 +20405,97 @@
 	}(_timed_component2.default);
 
 	_reactDom2.default.render(_react2.default.createElement(Pihole, { url: document.getElementById('pihole').getAttribute('url'), pollInterval: 10000 }), document.getElementById('pihole'));
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _hostname = __webpack_require__(1);
+
+	var _hostname2 = _interopRequireDefault(_hostname);
+
+	var _uptime = __webpack_require__(160);
+
+	var _uptime2 = _interopRequireDefault(_uptime);
+
+	var _memory = __webpack_require__(162);
+
+	var _memory2 = _interopRequireDefault(_memory);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Panel = function (_React$Component) {
+	    _inherits(Panel, _React$Component);
+
+	    function Panel(props) {
+	        _classCallCheck(this, Panel);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Panel).call(this, props));
+
+	        _this.state = { data: [] };
+	        return _this;
+	    }
+
+	    _createClass(Panel, [{
+	        key: 'loadFromServer',
+	        value: function loadFromServer() {
+	            var _this2 = this;
+
+	            $.ajax({
+	                url: this.props.url,
+	                dataType: 'json',
+	                success: function success(data) {
+	                    _this2.setState({ data: data });
+	                },
+	                error: function error(xhr, status, err) {
+	                    console.error(_this2.props.url, status, err.toString());
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.loadFromServer();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            if (this.state.data.server) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(_hostname2.default, { url: this.state.data.server.hostname }),
+	                    _react2.default.createElement(_uptime2.default, { url: this.state.data.server.uptime, pollInterval: 1000 }),
+	                    _react2.default.createElement(_memory2.default, { url: this.state.data.system.memory, pollInterval: 10000 })
+	                );
+	            } else {
+	                return _react2.default.createElement('div', null);
+	            }
+	        }
+	    }]);
+
+	    return Panel;
+	}(_react2.default.Component);
+
+	_reactDom2.default.render(_react2.default.createElement(Panel, { url: document.getElementById('panel').getAttribute('url') }), document.getElementById('panel'));
 
 /***/ }
 /******/ ]);

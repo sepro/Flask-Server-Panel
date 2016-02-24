@@ -15,8 +15,4 @@ class Memory extends TimedComponent {
     }
   };
 
-
-ReactDOM.render(
-  <Memory url={document.getElementById('memory').getAttribute('url')} pollInterval={5000} />,
-  document.getElementById('memory')
-);
+export default Memory;
