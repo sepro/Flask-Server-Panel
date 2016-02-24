@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Hostname extends React.Component{
+
+class TimedComponent extends React.Component{
     constructor(props) {
        super(props);
        this.state = {data: []};
@@ -22,14 +22,8 @@ class Hostname extends React.Component{
 
     componentDidMount() {
         this.loadFromServer();
+        setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
     }
+  }
 
-    render() {
-      return (<span>hostname : <strong>{ this.state.data.hostname }</strong></span>);
-    }
-}
-
-ReactDOM.render(
-  <Hostname url={document.getElementById('hostname').getAttribute('url')} />,
-  document.getElementById('hostname')
-);
+export default TimedComponent;

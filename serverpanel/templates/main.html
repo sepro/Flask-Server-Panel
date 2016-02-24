@@ -16,17 +16,8 @@
         <div id="pihole" url="{{url_for('api.api_pihole_stats')}}"></div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/react.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/react-dom.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/uptime.jsx') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/hostname.jsx') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/memory.jsx') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/swap.jsx') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/disk.jsx') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/processes.jsx') }}"></script>
-    <script type="text/babel" src="{{ url_for('static', filename='jsx/pihole.jsx') }}"></script>
+    <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
 </body>
 </html>
