@@ -2,29 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Hostname extends React.Component{
-    loadFromServer: function() {
+    constructor(props) {
+       super(props);
+       this.state = {data: []};
+    }
+
+    loadFromServer() {
         $.ajax({
           url: this.props.url,
           dataType: 'json',
-          cache: false,
-          success: function(data) {
+          success: (data) => {
             this.setState({data: data});
-          }.bind(this),
-          error: function(xhr, status, err) {
+          },
+          error: (xhr, status, err) => {
             console.error(this.props.url, status, err.toString());
-          }.bind(this)
+          }
         });
-      },
-    getInitialState: function() {
-        return {data: []};
-    },
-    componentDidMount: function() {
+    }
+
+    componentDidMount() {
         this.loadFromServer();
-    },
-    render: function() {
+    }
 
-     return (<span>hostname : <strong>{ this.state.data.hostname }</strong></span>);
-
+    render() {
+      return (<span>hostname : <strong>{ this.state.data.hostname }</strong></span>);
     }
 }
 

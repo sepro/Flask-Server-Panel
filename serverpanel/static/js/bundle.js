@@ -58,6 +58,10 @@
 
 	var _hello2 = _interopRequireDefault(_hello);
 
+	var _hostname = __webpack_require__(161);
+
+	var _hostname2 = _interopRequireDefault(_hostname);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
@@ -84,16 +88,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var World = function (_React$Component) {
-	  _inherits(World, _React$Component);
+	var Hello = function (_React$Component) {
+	  _inherits(Hello, _React$Component);
 
-	  function World() {
-	    _classCallCheck(this, World);
+	  function Hello() {
+	    _classCallCheck(this, Hello);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(World).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Hello).apply(this, arguments));
 	  }
 
-	  _createClass(World, [{
+	  _createClass(Hello, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -104,10 +108,10 @@
 	    }
 	  }]);
 
-	  return World;
+	  return Hello;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(World, null), document.getElementById('hello'));
+	_reactDom2.default.render(_react2.default.createElement(Hello, null), document.getElementById('hello'));
 
 /***/ },
 /* 3 */
@@ -19709,6 +19713,84 @@
 
 	module.exports = __webpack_require__(5);
 
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(160);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Hostname = function (_React$Component) {
+	    _inherits(Hostname, _React$Component);
+
+	    function Hostname(props) {
+	        _classCallCheck(this, Hostname);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Hostname).call(this, props));
+
+	        _this.state = { data: [] };
+	        return _this;
+	    }
+
+	    _createClass(Hostname, [{
+	        key: 'loadFromServer',
+	        value: function loadFromServer() {
+	            var _this2 = this;
+
+	            $.ajax({
+	                url: this.props.url,
+	                dataType: 'json',
+	                success: function success(data) {
+	                    _this2.setState({ data: data });
+	                },
+	                error: function error(xhr, status, err) {
+	                    console.error(_this2.props.url, status, err.toString());
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.loadFromServer();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                null,
+	                'hostname : ',
+	                _react2.default.createElement(
+	                    'strong',
+	                    null,
+	                    this.state.data.hostname
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Hostname;
+	}(_react2.default.Component);
+
+	_reactDom2.default.render(_react2.default.createElement(Hostname, { url: document.getElementById('hostname').getAttribute('url') }), document.getElementById('hostname'));
 
 /***/ }
 /******/ ]);
