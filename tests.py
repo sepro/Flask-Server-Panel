@@ -168,6 +168,16 @@ class MyTest(TestCase):
             self.assertTrue('packets_recv' in network['io'].keys())
             self.assertTrue('packets_sent' in network['io'].keys())
 
+    def test_route_network_external(self):
+        # check if route returns code 200
+        response = self.client.get('/api/system/network/external')
+        self.assert200(response)
+
+        # check if object returned contains the desired data
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('ip' in data.keys())
+        self.assertTrue('country' in data.keys())
+
     def test_route_processes(self):
         # check if route returns code 200
         response = self.client.get('/api/system/processes')

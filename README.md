@@ -2,3 +2,11 @@
 
 # Flask-Server-Panel
 Server panel based on flask to show stats for a small private server
+
+The back-end is based on Python Flask with a front-end using React.js
+
+## Getting started
+
+## Developing the front-end
+
+## UWSGI, supervisor and nginx
