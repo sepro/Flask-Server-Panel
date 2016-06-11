@@ -1,10 +1,12 @@
 from datetime import timedelta
+from requests import get
 
 import uptime
 import psutil
 import platform
 import math
 import socket
+import json
 
 
 class ServerInfo:
@@ -105,6 +107,11 @@ class ServerInfo:
                       for k, v in psutil.net_io_counters(pernic=True).items()]
 
         return network_io
+
+    @staticmethod
+    def get_network_external():
+        data = get('http://ipinfo.io/json').text
+        return json.loads(data)
 
     @staticmethod
     def get_processes():

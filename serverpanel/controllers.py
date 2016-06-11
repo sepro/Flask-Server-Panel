@@ -125,6 +125,12 @@ def api_system_network_io():
     return server_info.get_network_io()
 
 
+@api.route('/system/network/external')
+@jsonify
+def api_system_network_external():
+    return server_info.get_network_external()
+
+
 @api.route('/system/processes')
 @jsonify
 def api_system_processes():
