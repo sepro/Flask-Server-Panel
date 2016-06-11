@@ -150,7 +150,7 @@ class MyTest(TestCase):
 
     def test_route_network_io(self):
         # check if route returns code 200
-        response = self.client.get('/api/system/network/io')
+        response = self.client.get('/api/network/io')
         self.assert200(response)
 
         # check if object returned contains the desired data
@@ -170,7 +170,7 @@ class MyTest(TestCase):
 
     def test_route_network_external(self):
         # check if route returns code 200
-        response = self.client.get('/api/system/network/external')
+        response = self.client.get('/api/network/external')
         self.assert200(response)
 
         # check if object returned contains the desired data

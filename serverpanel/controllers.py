@@ -26,6 +26,10 @@ def api_index():
                 'processes': url_for('api.api_system_processes'),
                 'disk_space': url_for('api.api_system_disk_space')
                 },
+            'network': {
+                'io': url_for('api.api_network_io'),
+                'external': url_for('api.api_network_external')
+            },
             'pihole': {
                 'stats': url_for('api.api_pihole_stats')
                 }
@@ -119,22 +123,22 @@ def api_system_disk_io():
     return server_info.get_disk_io()
 
 
-@api.route('/system/network/io')
-@jsonify
-def api_system_network_io():
-    return server_info.get_network_io()
-
-
-@api.route('/system/network/external')
-@jsonify
-def api_system_network_external():
-    return server_info.get_network_external()
-
-
 @api.route('/system/processes')
 @jsonify
 def api_system_processes():
     return server_info.get_processes()
+
+
+@api.route('/network/io')
+@jsonify
+def api_network_io():
+    return server_info.get_network_io()
+
+
+@api.route('/network/external')
+@jsonify
+def api_network_external():
+    return server_info.get_network_external()
 
 
 @api.route('/pihole/stats')

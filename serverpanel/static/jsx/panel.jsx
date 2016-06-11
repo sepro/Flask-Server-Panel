@@ -8,6 +8,7 @@ import Swap from './swap.jsx';
 import Disk from './disk.jsx';
 import Processes from './processes.jsx'
 import Pihole from './pihole.jsx'
+import Network from './network.jsx'
 
 class Panel extends React.Component{
     constructor(props) {
@@ -38,6 +39,7 @@ class Panel extends React.Component{
           <div>
           <Hostname url={ this.state.data.server.hostname } />
           <Uptime url={ this.state.data.server.uptime } pollInterval={1000}/>
+          <Network url={ this.state.data.network.external } pollInterval={50000}/>
           <Memory url={ this.state.data.system.memory} pollInterval={10000}/>
           <Swap url={ this.state.data.system.swap} pollInterval={10000}/>
           <Disk url={ this.state.data.system.disk_space} pollInterval={10000}/>
