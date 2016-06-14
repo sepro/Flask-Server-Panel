@@ -20466,9 +20466,13 @@
 
 	var _pihole2 = _interopRequireDefault(_pihole);
 
-	var _network = __webpack_require__(169);
+	var _networkExternal = __webpack_require__(169);
 
-	var _network2 = _interopRequireDefault(_network);
+	var _networkExternal2 = _interopRequireDefault(_networkExternal);
+
+	var _networkInternal = __webpack_require__(170);
+
+	var _networkInternal2 = _interopRequireDefault(_networkInternal);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20520,7 +20524,8 @@
 	                    null,
 	                    _react2.default.createElement(_hostname2.default, { url: this.state.data.server.hostname }),
 	                    _react2.default.createElement(_uptime2.default, { url: this.state.data.server.uptime, pollInterval: 1000 }),
-	                    _react2.default.createElement(_network2.default, { url: this.state.data.network.external, pollInterval: 50000 }),
+	                    _react2.default.createElement(_networkExternal2.default, { url: this.state.data.network.external, pollInterval: 50000 }),
+	                    _react2.default.createElement(_networkInternal2.default, { url: this.state.data.network.io, pollInterval: 50000 }),
 	                    _react2.default.createElement(_memory2.default, { url: this.state.data.system.memory, pollInterval: 10000 }),
 	                    _react2.default.createElement(_swap2.default, { url: this.state.data.system.swap, pollInterval: 10000 }),
 	                    _react2.default.createElement(_disk2.default, { url: this.state.data.system.disk_space, pollInterval: 10000 }),
@@ -20570,16 +20575,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Network = function (_TimedComponent) {
-	  _inherits(Network, _TimedComponent);
+	var NetworkExternal = function (_TimedComponent) {
+	  _inherits(NetworkExternal, _TimedComponent);
 
-	  function Network() {
-	    _classCallCheck(this, Network);
+	  function NetworkExternal() {
+	    _classCallCheck(this, NetworkExternal);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Network).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NetworkExternal).apply(this, arguments));
 	  }
 
-	  _createClass(Network, [{
+	  _createClass(NetworkExternal, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -20598,10 +20603,82 @@
 	    }
 	  }]);
 
-	  return Network;
+	  return NetworkExternal;
 	}(_timed_component2.default);
 
-	exports.default = Network;
+	exports.default = NetworkExternal;
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _timed_component = __webpack_require__(161);
+
+	var _timed_component2 = _interopRequireDefault(_timed_component);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NetworkInternal = function (_TimedComponent) {
+	  _inherits(NetworkInternal, _TimedComponent);
+
+	  function NetworkInternal() {
+	    _classCallCheck(this, NetworkInternal);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NetworkInternal).apply(this, arguments));
+	  }
+
+	  _createClass(NetworkInternal, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Local IP : ',
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.state.data.map(function (network, i) {
+	            if (network.io.bytes_sent > 0) {
+	              return _react2.default.createElement(
+	                'li',
+	                { key: i },
+	                network.device,
+	                ': ',
+	                network.address
+	              );
+	            }
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NetworkInternal;
+	}(_timed_component2.default);
+
+	exports.default = NetworkInternal;
 
 /***/ }
 /******/ ]);
