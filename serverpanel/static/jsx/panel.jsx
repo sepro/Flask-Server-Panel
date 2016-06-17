@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Logo from './logo.jsx';
 import Hostname from './hostname.jsx';
 import Uptime from './uptime.jsx';
 import Memory from './memory.jsx';
@@ -38,6 +39,7 @@ class Panel extends React.Component{
       if (this.state.data.server) {
           return (
           <div>
+          <Logo url= { null } pollInterval={1000}/>
           <Hostname url={ this.state.data.server.hostname } />
           <Uptime url={ this.state.data.server.uptime } pollInterval={1000}/>
           <NetworkExternal url={ this.state.data.network.external } pollInterval={50000}/>
