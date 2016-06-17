@@ -7,7 +7,7 @@ import platform
 import math
 import socket
 import json
-
+import os
 
 class ServerInfo:
     def __init__(self, app=None):
@@ -16,6 +16,10 @@ class ServerInfo:
         self.pihole_enabled = False
         self.pihole_blocked_domains = '/etc/pihole/pihole.3.eventHorizon.txt'
         self.pihole_log = '/var/log/pihole.log'
+
+        self.cpu_temp = '/sys/class/thermal/thermal_zone0/temp'
+
+        self.external_network = 'http://ipinfo.io/json'
 
         if app is not None:
             self.init_app(app)
@@ -108,9 +112,8 @@ class ServerInfo:
 
         return network_io
 
-    @staticmethod
-    def get_network_external():
-        data = get('http://ipinfo.io/json').text
+    def get_network_external(self):
+        data = get(self.external_network).text
         return json.loads(data)
 
     @staticmethod
@@ -125,6 +128,16 @@ class ServerInfo:
                                   'cpu_percentage': proc.cpu_percent(interval=None)})
 
         return sorted(processes, key=lambda k: k['cpu_percentage'], reverse=True)
+
+    def get_temperature(self):
+        cpu_temp = 0
+        gpu_temp = 0
+
+        if os.path.exists(self.cpu_temp):
+            with open(self.cpu_temp) as infile:
+                cpu_temp = int(infile.read())/1000
+
+        return {'cpu': cpu_temp, 'gpu': gpu_temp}
 
     def get_pihole_stats(self):
         if self.pihole_enabled:

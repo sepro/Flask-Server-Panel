@@ -129,6 +129,12 @@ def api_system_processes():
     return server_info.get_processes()
 
 
+@api.route('/system/temp')
+@jsonify
+def api_system_temp():
+    return server_info.get_temperature()
+
+
 @api.route('/network/io')
 @jsonify
 def api_network_io():
