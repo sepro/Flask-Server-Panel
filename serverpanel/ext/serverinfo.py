@@ -131,13 +131,12 @@ class ServerInfo:
 
     def get_temperature(self):
         cpu_temp = 0
-        gpu_temp = 0
 
         if os.path.exists(self.cpu_temp):
             with open(self.cpu_temp) as infile:
                 cpu_temp = int(infile.read())/1000
 
-        return {'cpu': cpu_temp, 'gpu': gpu_temp}
+        return {'cpu': cpu_temp}
 
     def get_pihole_stats(self):
         if self.pihole_enabled:
