@@ -9,6 +9,7 @@ import socket
 import json
 import os
 
+
 class ServerInfo:
     def __init__(self, app=None):
         self.server_type = None

@@ -178,6 +178,15 @@ class MyTest(TestCase):
         self.assertTrue('ip' in data.keys())
         self.assertTrue('country' in data.keys())
 
+    def test_route_temperature(self):
+        # check if route returns code 200
+        response = self.client.get('/api/system/temp')
+        self.assert200(response)
+
+        # check if object returned contains the desired data
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('cpu' in data.keys())
+
     def test_route_processes(self):
         # check if route returns code 200
         response = self.client.get('/api/system/processes')
