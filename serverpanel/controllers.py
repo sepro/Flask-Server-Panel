@@ -24,7 +24,8 @@ def api_index():
                 'memory': url_for('api.api_system_memory'),
                 'swap': url_for('api.api_system_swap'),
                 'processes': url_for('api.api_system_processes'),
-                'disk_space': url_for('api.api_system_disk_space')
+                'disk_space': url_for('api.api_system_disk_space'),
+                'temp': url_for('api.api_system_temp')
                 },
             'network': {
                 'io': url_for('api.api_network_io'),
