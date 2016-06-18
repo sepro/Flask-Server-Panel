@@ -1,6 +1,7 @@
-import TimedComponent from './timed_component.jsx';
 import React from 'react';
-import ReactDOM from 'react-dom';
+
+import TimedComponent from './timed_component.jsx';
+
 
 class Pihole extends TimedComponent{
         render() {

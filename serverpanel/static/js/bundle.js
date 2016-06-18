@@ -25324,7 +25324,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
+	var _reactRouter = __webpack_require__(160);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25353,6 +25353,16 @@
 	                    'p',
 	                    null,
 	                    'Header'
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/' },
+	                    'Panel'
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/network/' },
+	                    'Network details'
 	                )
 	            );
 	        }
@@ -25378,8 +25388,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25433,8 +25441,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
 
 	var _logo = __webpack_require__(225);
 
@@ -25577,10 +25583,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25679,10 +25681,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25757,17 +25755,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _timed_component = __webpack_require__(228);
-
-	var _timed_component2 = _interopRequireDefault(_timed_component);
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
+	var _timed_component = __webpack_require__(228);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25888,10 +25882,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	var _progressbar = __webpack_require__(230);
 
 	var _progressbar2 = _interopRequireDefault(_progressbar);
@@ -25945,7 +25935,7 @@
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -25956,10 +25946,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25979,29 +25965,29 @@
 	    }
 
 	    _createClass(ProgressBar, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 
 	            return _react2.default.createElement(
-	                'div',
-	                { className: 'progress' },
+	                "div",
+	                { className: "progress" },
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'progress-bar', role: 'progressbar', 'aria-valuenow': '{ (this.props.percent*1).toFixed(0) }', 'aria-valuemin': '0', 'aria-valuemax': '100', style: { width: (this.props.percent * 1).toFixed(0) + '%' } },
+	                    "div",
+	                    { className: "progress-bar", role: "progressbar", "aria-valuenow": "{ (this.props.percent*1).toFixed(0) }", "aria-valuemin": "0", "aria-valuemax": "100", style: { width: (this.props.percent * 1).toFixed(0) + '%' } },
 	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'progress-label' },
-	                        'Used ',
+	                        "span",
+	                        { className: "progress-label" },
+	                        "Used ",
 	                        (this.props.used / 1073741824).toFixed(2),
-	                        ' / ',
+	                        " / ",
 	                        (this.props.total / 1073741824).toFixed(2),
-	                        ' Gb ',
+	                        " Gb ",
 	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'text-muted' },
-	                            '(Free: ',
+	                            "span",
+	                            { className: "text-muted" },
+	                            "(Free: ",
 	                            (this.props.free / 1073741824).toFixed(2),
-	                            ' Gb)'
+	                            " Gb)"
 	                        )
 	                    )
 	                )
@@ -26029,10 +26015,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _progressbar = __webpack_require__(230);
 
@@ -26096,10 +26078,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _progressbar = __webpack_require__(230);
 
@@ -26171,17 +26149,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _timed_component = __webpack_require__(228);
-
-	var _timed_component2 = _interopRequireDefault(_timed_component);
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
+	var _timed_component = __webpack_require__(228);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26290,17 +26264,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _timed_component = __webpack_require__(228);
-
-	var _timed_component2 = _interopRequireDefault(_timed_component);
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
+	var _timed_component = __webpack_require__(228);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26416,17 +26386,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _timed_component = __webpack_require__(228);
-
-	var _timed_component2 = _interopRequireDefault(_timed_component);
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
+	var _timed_component = __webpack_require__(228);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26481,17 +26447,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _timed_component = __webpack_require__(228);
-
-	var _timed_component2 = _interopRequireDefault(_timed_component);
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(159);
+	var _timed_component = __webpack_require__(228);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _timed_component2 = _interopRequireDefault(_timed_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26556,8 +26518,6 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(159);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

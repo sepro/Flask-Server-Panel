@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 
 import Logo from './components/logo.jsx';
 import Hostname from './components/hostname.jsx';
@@ -11,6 +10,7 @@ import Processes from './components/processes.jsx'
 import Pihole from './components/pihole.jsx'
 import NetworkExternal from './components/network-external.jsx'
 import NetworkInternal from './components/network-internal.jsx'
+
 
 class Panel extends React.Component{
     constructor(props) {

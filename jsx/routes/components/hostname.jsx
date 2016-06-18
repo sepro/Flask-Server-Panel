@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 
 class Hostname extends React.Component{
     constructor(props) {

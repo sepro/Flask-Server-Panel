@@ -1,12 +1,13 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { Link } from 'react-router';
+
 
 class Header extends React.Component{
 
     render() {
        return (
            <div>
-               <p>Header</p>
+               <p>Header</p><Link to="/">Panel</Link><Link to="/network/">Network details</Link>
            </div>
        );
     }
