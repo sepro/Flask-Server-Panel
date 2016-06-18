@@ -1,10 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import {Router, Route, IndexRoute, browserHistory} from 'react-router'
+
 import Header from './components/header.jsx';
 import Footer from './components/footer.jsx';
 
 import Panel from './routes/panel.jsx';
+import Network from './routes/network.jsx';
 
 class Main extends React.Component{
 
@@ -13,7 +16,7 @@ class Main extends React.Component{
            <div>
                <Header />
 
-               {React.cloneElement(this.props.children, this.props)}
+               {React.cloneElement(this.props.children, this.props.route)}
 
                <Footer />
            </div>
@@ -22,7 +25,16 @@ class Main extends React.Component{
 
 }
 
+const router = (
+    <Router history={browserHistory}>
+        <Route path="/" component={Main} url={document.getElementById('panel').getAttribute('url')}>
+            <IndexRoute component={Panel}></IndexRoute>
+            <Route path="/network/" component={Network}></Route>
+        </Route>
+    </Router>
+);
+
 render(
-  <Main url={document.getElementById('panel').getAttribute('url')}><Panel /></Main>,
+  router,
   document.getElementById('panel')
 );
