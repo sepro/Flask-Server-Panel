@@ -25630,7 +25630,12 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.loadFromServer();
-	            setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+	            this.interval = setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearInterval(this.interval);
 	        }
 	    }, {
 	        key: 'render',
@@ -25857,7 +25862,12 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.loadFromServer();
-	            setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+	            this.interval = setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearInterval(this.interval);
 	        }
 	    }]);
 

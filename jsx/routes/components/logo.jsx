@@ -29,7 +29,11 @@ class Logo extends React.Component{
 
     componentDidMount() {
         this.loadFromServer();
-        setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+        this.interval = setInterval(this.loadFromServer.bind(this), this.props.pollInterval);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval);
     }
 
     render() {
