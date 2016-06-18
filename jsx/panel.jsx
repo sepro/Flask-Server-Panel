@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Logo from './logo.jsx';
-import Hostname from './hostname.jsx';
-import Uptime from './uptime.jsx';
-import Memory from './memory.jsx';
-import Swap from './swap.jsx';
-import Disk from './disk.jsx';
-import Processes from './processes.jsx'
-import Pihole from './pihole.jsx'
-import NetworkExternal from './network-external.jsx'
-import NetworkInternal from './network-internal.jsx'
+import Logo from './components/logo.jsx';
+import Hostname from './components/hostname.jsx';
+import Uptime from './components/uptime.jsx';
+import Memory from './components/memory.jsx';
+import Swap from './components/swap.jsx';
+import Disk from './components/disk.jsx';
+import Processes from './components/processes.jsx'
+import Pihole from './components/pihole.jsx'
+import NetworkExternal from './components/network-external.jsx'
+import NetworkInternal from './components/network-internal.jsx'
 
 class Panel extends React.Component{
     constructor(props) {
@@ -39,15 +39,24 @@ class Panel extends React.Component{
       if (this.state.data.server) {
           return (
           <div>
-          <Logo url= { null } pollInterval={1000}/>
-          <Hostname url={ this.state.data.server.hostname } />
-          <Uptime url={ this.state.data.server.uptime } pollInterval={1000}/>
-          <NetworkExternal url={ this.state.data.network.external } pollInterval={50000}/>
-          <NetworkInternal url={ this.state.data.network.io } pollInterval={50000}/>
+          <div className="row">
+              <div className="col-lg-3">
+                  <Logo url= { null } pollInterval={1000}/>
+              </div>
+              <div className="col-lg-9">
+                  <Hostname url={ this.state.data.server.hostname } />
+                  <Uptime url={ this.state.data.server.uptime } pollInterval={1000}/>
+                  <NetworkExternal url={ this.state.data.network.external } pollInterval={50000}/>
+                  <NetworkInternal url={ this.state.data.network.io } pollInterval={50000}/>
+              </div>
+          </div>
+          <hr />
           <Memory url={ this.state.data.system.memory} pollInterval={10000}/>
           <Swap url={ this.state.data.system.swap} pollInterval={10000}/>
           <Disk url={ this.state.data.system.disk_space} pollInterval={10000}/>
+          <hr />
           <Processes url={ this.state.data.system.processes} pollInterval={10000}/>
+          <hr />
           <Pihole url={ this.state.data.pihole.stats} pollInterval={20000}/>
           </div>
           );

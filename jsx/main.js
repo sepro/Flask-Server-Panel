@@ -1,0 +1,1 @@
+import Panel from './panel.jsx';
