@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 import Logo from './components/logo.jsx';
 import Hostname from './components/hostname.jsx';
@@ -66,7 +66,4 @@ class Panel extends React.Component{
     }
 }
 
-ReactDOM.render(
-  <Panel url={document.getElementById('panel').getAttribute('url')} />,
-  document.getElementById('panel')
-);
+export default Panel;

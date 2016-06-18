@@ -133,7 +133,7 @@ class ServerInfo:
         return sorted(processes, key=lambda k: k['cpu_percentage'], reverse=True)
 
     def get_temperature(self):
-        cpu_temp = random.randint(0,100) if self.testing else 0
+        cpu_temp = random.randint(0, 100) if self.testing else 0
 
         if os.path.exists(self.cpu_temp):
             with open(self.cpu_temp) as infile:

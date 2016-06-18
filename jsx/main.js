@@ -1,1 +1,1 @@
-import Panel from './panel.jsx';
+import Main from './Main.jsx';
