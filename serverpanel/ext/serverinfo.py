@@ -8,7 +8,7 @@ import math
 import socket
 import json
 import os
-
+import random
 
 class ServerInfo:
     def __init__(self, app=None):
@@ -31,6 +31,8 @@ class ServerInfo:
 
         self.server_type = platform.system()
         self.pihole_enabled = app.config['ENABLE_PIHOLE'] if 'ENABLE_PIHOLE' in app.config.keys() else False
+
+        self.testing = app.config['TESTING']
 
         # these two functions need to be run once to give non-zero output
         psutil.cpu_percent(percpu=True, interval=None)
@@ -131,7 +133,7 @@ class ServerInfo:
         return sorted(processes, key=lambda k: k['cpu_percentage'], reverse=True)
 
     def get_temperature(self):
-        cpu_temp = 0
+        cpu_temp = random.randint(0,100) if self.testing else 0
 
         if os.path.exists(self.cpu_temp):
             with open(self.cpu_temp) as infile:

@@ -41,7 +41,7 @@ class Panel extends React.Component{
           <div>
           <div className="row">
               <div className="col-lg-3">
-                  <Logo url= { null } pollInterval={1000}/>
+                  <Logo url={ this.state.data.system.temp }  pollInterval={1000}/>
               </div>
               <div className="col-lg-9">
                   <Hostname url={ this.state.data.server.hostname } />
