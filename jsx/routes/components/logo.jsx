@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 
 class Logo extends React.Component{
     constructor(props) {
@@ -8,22 +8,15 @@ class Logo extends React.Component{
     }
 
     loadFromServer() {
-        $.ajax({
-          url: this.props.url,
-          dataType: 'json',
-          success: (data) => {
+        axios.get(this.props.url).then((response) => {
             var color = "#00a985";
-            if (data.cpu > 50) {
+            if (response.data.cpu > 50) {
               color = "#FFa985"
             }
-            if (data.cpu < 20) {
+            if (response.data.cpu < 20) {
               color = "#00a9FF"
             }
-            this.setState({data: data, color: color});
-          },
-          error: (xhr, status, err) => {
-            console.error(this.props.url, status, err.toString());
-          }
+            this.setState({data: response.data, color: color});
         });
     }
 

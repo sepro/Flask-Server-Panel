@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 
 class TimedComponent extends React.Component{
@@ -8,16 +9,13 @@ class TimedComponent extends React.Component{
     }
 
     loadFromServer() {
-        $.ajax({
-          url: this.props.url,
-          dataType: 'json',
-          success: (data) => {
-            this.setState({data: data});
-          },
-          error: (xhr, status, err) => {
-            console.error(this.props.url, status, err.toString());
-          }
-        });
+        axios.get(this.props.url)
+            .then((response) => {
+                this.setState({data: response.data});
+            })
+            .catch((err) => {
+                console.error(err);
+            })
     }
 
     componentDidMount() {

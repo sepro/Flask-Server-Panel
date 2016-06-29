@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 
 class Hostname extends React.Component{
     constructor(props) {
@@ -8,16 +8,9 @@ class Hostname extends React.Component{
     }
 
     loadFromServer() {
-        $.ajax({
-          url: this.props.url,
-          dataType: 'json',
-          success: (data) => {
-            this.setState({data: data});
-          },
-          error: (xhr, status, err) => {
-            console.error(this.props.url, status, err.toString());
-          }
-        });
+        axios.get(this.props.url).then((response) => {
+            this.setState({data: response.data});
+        })
     }
 
     componentDidMount() {
