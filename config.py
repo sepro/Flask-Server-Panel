@@ -1,6 +1,7 @@
 DEBUG = True
 TESTING = True
 
-ENABLE_PIHOLE = False
+ENABLE_PIHOLE = True
+PIHOLE_API = 'http://192.168.1.25/admin/api.php'
 
 SECRET_KEY = "change me"

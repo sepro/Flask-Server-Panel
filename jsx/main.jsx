@@ -3,9 +3,11 @@ import { render } from 'react-dom';
 
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
+//import main components (which will appear on every page)
 import Header from './components/header.jsx';
 import Footer from './components/footer.jsx';
 
+//import the routes
 import Panel from './routes/panel.jsx';
 import Network from './routes/network.jsx';
 

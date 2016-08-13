@@ -15,8 +15,7 @@ class ServerInfo:
         self.server_type = None
 
         self.pihole_enabled = False
-        self.pihole_blocked_domains = '/etc/pihole/pihole.3.eventHorizon.txt'
-        self.pihole_log = '/var/log/pihole.log'
+        self.pihole_api = None
 
         self.cpu_temp = '/sys/class/thermal/thermal_zone0/temp'
 
@@ -31,6 +30,7 @@ class ServerInfo:
 
         self.server_type = platform.system()
         self.pihole_enabled = app.config['ENABLE_PIHOLE'] if 'ENABLE_PIHOLE' in app.config.keys() else False
+        self.pihole_api = app.config['PIHOLE_API'] if 'PIHOLE_API' in app.config.keys() else None
 
         self.testing = app.config['TESTING']
 
@@ -142,24 +142,15 @@ class ServerInfo:
         return {'cpu': cpu_temp}
 
     def get_pihole_stats(self):
-        if self.pihole_enabled:
-            with open(self.pihole_blocked_domains) as f:
-                blocked_domains = sum(1 for line in f)
-
-            with open(self.pihole_log) as f:
-                dns_queries_today = sum(1 if 'query' in line else 0 for line in f)
-
-            with open(self.pihole_log) as f:
-                ads_blocked_today = sum(1 if '/etc/pihole/gravity.list' in line and 'address' not in line else 0 for line in f)
-
-            ads_percentage_today = (ads_blocked_today * 100.00)/dns_queries_today if dns_queries_today > 0 else 0
+        if self.pihole_enabled and self.pihole_api is not None:
+            data = json.loads(get(self.pihole_api).text)
 
             stats = {
                 "enabled": self.pihole_enabled,
-                "blocked_domains": blocked_domains,
-                "dns_queries_today": dns_queries_today,
-                "ads_blocked_today": ads_blocked_today,
-                "ads_percentage_today": ads_percentage_today
+                "blocked_domains": int(data['domains_being_blocked'].replace(',', '')),
+                "dns_queries_today": int(data['dns_queries_today'].replace(',', '')),
+                "ads_blocked_today": int(data['ads_blocked_today'].replace(',', '')),
+                "ads_percentage_today": float(data['ads_percentage_today'])
             }
 
             return stats
