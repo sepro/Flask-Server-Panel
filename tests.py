@@ -23,6 +23,7 @@ class MyTest(TestCase):
         self.assertFalse(server_info.pihole_enabled)
 
         self.app.config['ENABLE_PIHOLE'] = True
+        self.app.config['PIHOLE_API'] = None
         server_info = ServerInfo(self.app)
         self.assertTrue(server_info.pihole_enabled)
 
@@ -209,18 +210,12 @@ class MyTest(TestCase):
 
     def test_pihole_enabled(self):
         self.app.extensions['flask-serverinfo'].pihole_enabled = True
-        h, self.app.extensions['flask-serverinfo'].pihole_blocked_domains = tempfile.mkstemp(text="1")
-        h, self.app.extensions['flask-serverinfo'].pihole_log = tempfile.mkstemp(text="1")
 
         response = self.client.get('/api/pihole/stats')
         self.assert200(response)
 
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('enabled' in data.keys())
-        self.assertTrue('blocked_domains' in data.keys())
-        self.assertTrue('dns_queries_today' in data.keys())
-        self.assertTrue('ads_blocked_today' in data.keys())
-        self.assertTrue('ads_percentage_today' in data.keys())
 
 
 if __name__ == '__main__':
