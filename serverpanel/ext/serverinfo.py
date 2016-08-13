@@ -19,7 +19,7 @@ class ServerInfo:
 
         self.cpu_temp = '/sys/class/thermal/thermal_zone0/temp'
 
-        self.external_network = 'http://ipinfo.io/json'
+        self.external_network = None
 
         if app is not None:
             self.init_app(app)
