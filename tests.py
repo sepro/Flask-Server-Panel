@@ -210,6 +210,7 @@ class MyTest(TestCase):
 
     def test_pihole_enabled(self):
         self.app.extensions['flask-serverinfo'].pihole_enabled = True
+        self.app.extensions['flask-serverinfo'].pihole_api = None
 
         response = self.client.get('/api/pihole/stats')
         self.assert200(response)

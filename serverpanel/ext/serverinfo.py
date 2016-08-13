@@ -19,7 +19,7 @@ class ServerInfo:
 
         self.cpu_temp = '/sys/class/thermal/thermal_zone0/temp'
 
-        self.external_network = None
+        self.external_network = 'http://ipinfo.io/json'
 
         if app is not None:
             self.init_app(app)
@@ -116,8 +116,14 @@ class ServerInfo:
         return network_io
 
     def get_network_external(self):
-        data = get(self.external_network).text
-        return json.loads(data)
+        output = {'ip': 'Unknown', 'country': 'Unknown'}
+        try:
+            data = get(self.external_network).text
+            output = json.loads(data)
+        except:
+            pass
+
+        return output
 
     @staticmethod
     def get_processes():
@@ -143,15 +149,25 @@ class ServerInfo:
 
     def get_pihole_stats(self):
         if self.pihole_enabled and self.pihole_api is not None:
-            data = json.loads(get(self.pihole_api).text)
-
             stats = {
                 "enabled": self.pihole_enabled,
-                "blocked_domains": int(data['domains_being_blocked'].replace(',', '')),
-                "dns_queries_today": int(data['dns_queries_today'].replace(',', '')),
-                "ads_blocked_today": int(data['ads_blocked_today'].replace(',', '')),
-                "ads_percentage_today": float(data['ads_percentage_today'])
+                "blocked_domains": 0,
+                "dns_queries_today": 0,
+                "ads_blocked_today": 0,
+                "ads_percentage_today": 0
             }
+            try:
+                data = json.loads(get(self.pihole_api).text)
+
+                stats = {
+                    "enabled": self.pihole_enabled,
+                    "blocked_domains": int(data['domains_being_blocked'].replace(',', '')),
+                    "dns_queries_today": int(data['dns_queries_today'].replace(',', '')),
+                    "ads_blocked_today": int(data['ads_blocked_today'].replace(',', '')),
+                    "ads_percentage_today": float(data['ads_percentage_today'])
+                }
+            except:
+                pass
 
             return stats
         else:
