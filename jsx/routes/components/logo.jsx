@@ -20,7 +20,7 @@ class Logo extends React.Component{
             c -= min;
             c = Math.floor(((c * (steps-1))/(max-min)));
 
-            console.log(response.data.cpu, c);
+            // console.log(response.data.cpu, c);
 
             var color = colors[c];
 
