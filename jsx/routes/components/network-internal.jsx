@@ -5,12 +5,12 @@ import TimedComponent from './timed_component.jsx';
 
 class NetworkInternal extends TimedComponent{
     render() {
-     return (<div>Local IP : <ul>{ this.state.data.map(function(network, i) {
+     return (<div>Local IP : <span>{ this.state.data.map(function(network, i) {
         if (network.io.bytes_sent > 0) {
-            return <li key={i}>{ network.device }: {network.address}</li>
+            return <span key={i}>{ network.device }: {network.address}</span>
         }
       })
-      }</ul>
+      }</span>
      </div>);
     }
   }

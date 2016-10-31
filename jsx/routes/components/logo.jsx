@@ -4,18 +4,26 @@ import axios from 'axios';
 class Logo extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {color: "#00a985"};
+        this.state = {color: "#00a985", data: {cpu: 20}};
     }
 
     loadFromServer() {
         axios.get(this.props.url).then((response) => {
-            var color = "#00a985";
-            if (response.data.cpu > 50) {
-              color = "#FFa985"
-            }
-            if (response.data.cpu < 20) {
-              color = "#00a9FF"
-            }
+            var min = 30;
+            var max = 80;
+            var steps = 7;
+
+            var colors = ["#37E500", "#77EC00", "#B7F300", "#F7FA00", "#F1A600", "#EB5300", "#E50000"];
+
+            var c = response.data.cpu > max ? max : response.data.cpu;
+            c = c < min ? min : c;
+            c -= min;
+            c = Math.floor(((c * (steps-1))/(max-min)));
+
+            console.log(response.data.cpu, c);
+
+            var color = colors[c];
+
             this.setState({data: response.data, color: color});
         });
     }
@@ -45,7 +53,8 @@ class Logo extends React.Component{
 <path fill={ this.state.color } d="m288.91,619.12c32.697-1.4271,76.571,10.532,76.657,26.396,0.5427,15.405-39.79,50.211-78.826,49.538-40.427,1.7439-80.069-33.116-79.55-45.199-0.60506-17.716,49.226-31.548,81.719-30.735z"/>
 <path fill={ this.state.color } d="m168.14,525.1c23.279,28.046,33.891,77.319,14.464,91.844-18.379,11.088-63.012,6.5216-94.736-39.052-21.395-38.242-18.638-77.157-3.6159-88.589,22.464-13.684,57.173,4.799,83.889,35.797z"/>
 <path fill={ this.state.color } d="m405.02,516.21c-25.187,29.502-39.212,83.31-20.838,100.64,17.568,13.464,64.729,11.582,99.566-36.756,25.296-32.465,16.82-86.682,2.3708-101.08-21.464-16.602-52.277,4.6449-81.099,37.188z"/>
-</svg></div>);
+</svg>
+</div>);
     }
 }
 

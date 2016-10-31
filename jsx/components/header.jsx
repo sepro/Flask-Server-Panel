@@ -7,7 +7,12 @@ class Header extends React.Component{
     render() {
        return (
            <div>
-               <p>Header</p><Link to="/">Panel</Link><Link to="/network/">Network details</Link>
+               <hr />
+               <ul className="nav nav-pills">
+                    <li><Link to="/">Panel</Link></li>
+                    <li><Link to="/network/">Network details</Link></li>
+               </ul>
+               <hr />
            </div>
        );
     }

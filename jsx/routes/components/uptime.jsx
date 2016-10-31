@@ -5,7 +5,7 @@ import TimedComponent from './timed_component.jsx';
 
 class Uptime extends TimedComponent{
     render() {
-     return (<div>uptime : <strong>{ this.state.data.uptime }</strong></div>);
+     return (<div>Uptime : <strong>{ this.state.data.uptime }</strong></div>);
     }
   }
 

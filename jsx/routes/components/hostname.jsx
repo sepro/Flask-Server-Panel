@@ -18,7 +18,7 @@ class Hostname extends React.Component{
     }
 
     render() {
-      return (<div>hostname : <strong>{ this.state.data.hostname }</strong></div>);
+      return (<div>Hostname : <strong>{ this.state.data.hostname }</strong></div>);
     }
 }
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Logo from './components/logo.jsx';
 import Hostname from './components/hostname.jsx';
 import Uptime from './components/uptime.jsx';
+import Temperature from './components/temperature.jsx';
 import Memory from './components/memory.jsx';
 import Swap from './components/swap.jsx';
 import Disk from './components/disk.jsx';
@@ -38,12 +39,13 @@ class Panel extends React.Component{
           return (
           <div>
           <div className="row">
-              <div className="col-lg-3">
-                  <Logo url={ this.state.data.system.temp }  pollInterval={1000}/>
+              <div className="col-md-3 col-xs-6">
+                  <Logo url={ this.state.data.system.temp }  pollInterval={5000}/>
               </div>
-              <div className="col-lg-9">
+              <div className="col-md-9 col-xs-6">
                   <Hostname url={ this.state.data.server.hostname } />
                   <Uptime url={ this.state.data.server.uptime } pollInterval={1000}/>
+                  <Temperature url={ this.state.data.system.temp } pollInterval={5000}/>
                   <NetworkExternal url={ this.state.data.network.external } pollInterval={50000}/>
                   <NetworkInternal url={ this.state.data.network.io } pollInterval={50000}/>
               </div>
