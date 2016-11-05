@@ -6,6 +6,7 @@ main = Blueprint('main', __name__)
 api = Blueprint('api', __name__)
 
 
+@main.route('/network/')
 @main.route('/')
 def index():
     return render_template('main.html')
