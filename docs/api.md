@@ -35,9 +35,22 @@ are supported.
 The entry point should be rather self-explanatory, it contains links to
 more detailed sections of the API.
 
+This documentation is valid for version 1.0 which can be checked at **/api/version/**
+
+```javascript
+{
+    "name": "Flask-Sever-Panel",
+    "version": "1.0"
+}
+```
+
 ## Details for subsections
 
   * [Network](./network.md)
   * [PiHole](./pihole.md)
+  * [Server](./server.md)
+  * [System](./system.md)
+  
+  
   
   
