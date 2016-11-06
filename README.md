@@ -1,11 +1,24 @@
 [![Build Status](https://travis-ci.org/sepro/Flask-Server-Panel.svg?branch=master)](https://travis-ci.org/sepro/Flask-Server-Panel) [![codecov.io](https://codecov.io/github/sepro/Flask-Server-Panel/coverage.svg?precision=1)](https://codecov.io/github/sepro/Flask-Server-Panel/)
 
-# Flask-Server-Panel
-Server panel based on flask to show stats for a small private server
+# Flask-Server-Panel and API
 
-The back-end is based on Python Flask with a front-end using React.js
+Server panel based on flask to show stats for a small private server. 
+Designed specifically with a [Raspberry Pi](https://www.raspberrypi.org/) 
+running [Pi-Hole](https://pi-hole.net/) in mind.
+
+The API that is queried by the front-end is located at <your_url>/api/. 
+For details check out the [API documentation](./docs/api.md).
+
+
+The back-end is based on Python [Flask](http://flask.pocoo.org/) with a 
+front-end using [React.js](https://facebook.github.io/react/) and 
+[Bootstrap](http://getbootstrap.com/)
 
 ![Flask-Server-Panel](./docs/server_panel.png "Server Panel")
+
+*Note: The Raspberry Pi logo changes color along with the temperature. 
+Green is good, red means you have to invest in a new case with better 
+cooling.*
 
 ## Getting started
 
