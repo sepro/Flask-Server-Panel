@@ -39,10 +39,10 @@ class Panel extends React.Component{
           return (
           <div>
           <div className="row">
-              <div className="col-md-3 col-xs-6">
+              <div className="col-md-3 col-sm-6 col-xs-12">
                   <Logo url={ this.state.data.system.temp }  pollInterval={5000}/>
               </div>
-              <div className="col-md-9 col-xs-6">
+              <div className="col-md-9 col-sm-6 col-xs-12">
                   <Hostname url={ this.state.data.server.hostname } />
                   <Uptime url={ this.state.data.server.uptime } pollInterval={1000}/>
                   <Temperature url={ this.state.data.system.temp } pollInterval={5000}/>

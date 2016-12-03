@@ -1,8 +1,10 @@
 from flask import Flask
+from flask_compress import Compress
 
 from serverpanel.ext.serverinfo import ServerInfo
 
 server_info = ServerInfo()
+compress = Compress()
 
 
 def create_app(config):
@@ -11,6 +13,7 @@ def create_app(config):
     app.config.from_object(config)
 
     server_info.init_app(app)
+    compress.init_app(app)
 
     from serverpanel.controllers import main
     from serverpanel.controllers import api
