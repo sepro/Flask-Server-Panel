@@ -1,8 +1,8 @@
 # Build docker
 # docker build -t CONTAINERNAME .
 
-# Run container (maps local port 80 to 8000 in the container)
-# docker run -p 80:8000 -d CONTAINERNAME
+# Run container (maps local port 80 to 80 in the container)
+# docker run -p 80:80 -d CONTAINERNAME
 
 
 FROM python:3.5-alpine
