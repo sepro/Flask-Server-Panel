@@ -48,7 +48,7 @@ Run tests and run app
     
     python run.py
 
-## Deploy using Docker
+## Deploy (on x86_64, not rPi!) using Docker
 
 In case you would like to test the panel, a docker container is available. Do note that you will get stats from within the container and not the host system. However, for trying out the app this is the quickest way to get things running.
 
