@@ -48,6 +48,14 @@ Run tests and run app
     
     python run.py
 
+## Deploy (on x86_64, not rPi!) using Docker
+
+In case you would like to test the panel, a docker container is available. Do note that you will get stats from within the container and not the host system. However, for trying out the app this is the quickest way to get things running.
+
+    docker pull sepro/flask-server-panel
+    docker run -p 80:80 -d sepro/flask-server-panel
+    
+This exposes gunicorn running in the container on port 80 to port 80 on the host system. 
 
 ## Developing the front-end
 Install all packages through npm 
