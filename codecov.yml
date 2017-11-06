@@ -1,2 +1,4 @@
 ignore:
   - "config.py"
+  - "wsgi.py"
+  - "run.py"
