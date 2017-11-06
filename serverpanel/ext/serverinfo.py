@@ -161,9 +161,9 @@ class ServerInfo:
 
                 stats = {
                     "enabled": self.pihole_enabled,
-                    "blocked_domains": int(data['domains_being_blocked'].replace(',', '')),
-                    "dns_queries_today": int(data['dns_queries_today'].replace(',', '')),
-                    "ads_blocked_today": int(data['ads_blocked_today'].replace(',', '')),
+                    "blocked_domains": data['domains_being_blocked'],
+                    "dns_queries_today": data['dns_queries_today'],
+                    "ads_blocked_today": data['ads_blocked_today'],
                     "ads_percentage_today": float(data['ads_percentage_today'])
                 }
             except:
