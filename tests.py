@@ -2,11 +2,16 @@
 from serverpanel import create_app
 from serverpanel.ext.serverinfo import ServerInfo
 
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 
 import unittest
 import json
-import tempfile
+import unittest.mock as mock
+
+from collections import namedtuple
+
+Request = namedtuple('Request', ['text'])
+valid_ip_data = Request(text='{"ip": "127.0.0.1", "country": "BE"}')
 
 
 class MyTest(TestCase):
@@ -169,7 +174,8 @@ class MyTest(TestCase):
             self.assertTrue('packets_recv' in network['io'].keys())
             self.assertTrue('packets_sent' in network['io'].keys())
 
-    def test_route_network_external(self):
+    @mock.patch('serverpanel.ext.serverinfo.get', return_value=valid_ip_data)
+    def test_route_network_external_success(self, mocked_get):
         # check if route returns code 200
         response = self.client.get('/api/network/external')
         self.assert200(response)
@@ -178,6 +184,21 @@ class MyTest(TestCase):
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('ip' in data.keys())
         self.assertTrue('country' in data.keys())
+        self.assertEqual(data['ip'], '127.0.0.1')
+        self.assertEqual(data['country'], 'BE')
+
+    @mock.patch('serverpanel.ext.serverinfo.get', return_value=None)
+    def test_route_network_external_fail(self, mocked_get):
+        # check if route returns code 200
+        response = self.client.get('/api/network/external')
+        self.assert200(response)
+
+        # check if object returned contains the desired data
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('ip' in data.keys())
+        self.assertTrue('country' in data.keys())
+        self.assertEqual(data['ip'], 'Unknown')
+        self.assertEqual(data['country'], 'Unknown')
 
     def test_route_temperature(self):
         # check if route returns code 200

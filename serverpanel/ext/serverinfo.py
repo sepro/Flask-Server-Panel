@@ -116,14 +116,17 @@ class ServerInfo:
         return network_io
 
     def get_network_external(self):
-        output = {'ip': 'Unknown', 'country': 'Unknown'}
+        output = {}
         try:
             data = get(self.external_network).text
             output = json.loads(data)
         except:
             pass
 
-        return output
+        if all([a in output.keys() for a in ["ip", "country"]]):
+            return output
+        else:
+            return {'ip': 'Unknown', 'country': 'Unknown'}
 
     @staticmethod
     def get_processes():
