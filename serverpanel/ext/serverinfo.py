@@ -109,13 +109,11 @@ class ServerInfo:
                 if value.family == socket.AF_INET:
                     network_config[device] = value.address
                     break
-            else:
-                network_config[device] = 'unknown address'
 
         network_io = [{'device': k,
                        'io': v._asdict(),
                        'address': network_config[k]}
-                      for k, v in psutil.net_io_counters(pernic=True).items()]
+                      for k, v in psutil.net_io_counters(pernic=True).items() if k in network_config.keys()]
 
         return network_io
 
