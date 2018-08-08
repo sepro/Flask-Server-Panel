@@ -42,6 +42,21 @@ class MyTest(TestCase):
         self.assert_template_used('main.html')
         self.assert200(response)
 
+        response = self.client.get('/network/')
+        self.assert_template_used('main.html')
+        self.assert200(response)
+
+    def test_api(self):
+        # check if route returns code 200
+        response = self.client.get('/api/')
+        self.assert200(response)
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('version' in data.keys())
+        self.assertTrue('server' in data.keys())
+        self.assertTrue('system' in data.keys())
+        self.assertTrue('network' in data.keys())
+        self.assertTrue('pihole' in data.keys())
+
     def test_api_details(self):
         # check if route returns code 200
         response = self.client.get('/api/version')
@@ -49,6 +64,15 @@ class MyTest(TestCase):
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('name' in data.keys())
         self.assertTrue('version' in data.keys())
+
+    def test_api_server(self):
+        # check if route returns code 200
+        response = self.client.get('/api/server')
+        self.assert200(response)
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('hostname' in data.keys())
+        self.assertTrue('os' in data.keys())
+        self.assertTrue('uptime' in data.keys())
 
     def test_route_hostname(self):
         # check if route returns code 200
