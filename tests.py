@@ -7,6 +7,8 @@ from flask_testing import TestCase
 import unittest
 import json
 import unittest.mock as mock
+import tempfile
+import os
 
 from collections import namedtuple
 
@@ -202,7 +204,14 @@ class MyTest(TestCase):
         self.assertEqual(data['ip'], 'Unknown')
         self.assertEqual(data['country'], 'Unknown')
 
-    def test_route_temperature(self):
+    def test_route_temperature_success(self):
+        fd, path = tempfile.mkstemp()
+
+        with open(path, "w") as f:
+            f.write('100000')
+
+        self.app.extensions['flask-serverinfo'].cpu_temp = path
+
         # check if route returns code 200
         response = self.client.get('/api/system/temp')
         self.assert200(response)
@@ -210,6 +219,28 @@ class MyTest(TestCase):
         # check if object returned contains the desired data
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('cpu' in data.keys())
+        self.assertEqual(data['cpu'], 100)
+
+        os.close(fd)
+
+    def test_route_temperature_fail(self):
+        fd, path = tempfile.mkstemp()
+
+        with open(path, "w") as f:
+            f.write('not a number')
+
+        self.app.extensions['flask-serverinfo'].cpu_temp = path
+
+        # check if route returns code 200
+        response = self.client.get('/api/system/temp')
+        self.assert200(response)
+
+        # check if object returned contains the desired data
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('cpu' in data.keys())
+        self.assertEqual(data['cpu'], -1)
+
+        os.close(fd)
 
     def test_route_processes(self):
         # check if route returns code 200
