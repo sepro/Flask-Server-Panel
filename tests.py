@@ -12,6 +12,8 @@ from collections import namedtuple
 
 Request = namedtuple('Request', ['text'])
 valid_ip_data = Request(text='{"ip": "127.0.0.1", "country": "BE"}')
+valid_pihole_data = Request(text='{"domains_being_blocked": 1,"dns_queries_today":2, '
+                                 '"ads_blocked_today": 3, "ads_percentage_today": 50.0}')
 
 
 class MyTest(TestCase):
@@ -228,16 +230,32 @@ class MyTest(TestCase):
 
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('enabled' in data.keys())
+        self.assertEqual(data['enabled'], False)
+        self.assertEqual(data['error'], False)
 
-    def test_pihole_enabled(self):
+    @mock.patch('serverpanel.ext.serverinfo.get', return_value=valid_pihole_data)
+    def test_pihole_enabled_success(self, mocked_get):
         self.app.extensions['flask-serverinfo'].pihole_enabled = True
-        self.app.extensions['flask-serverinfo'].pihole_api = None
+        self.app.extensions['flask-serverinfo'].pihole_api = ''
 
         response = self.client.get('/api/pihole/stats')
         self.assert200(response)
 
         data = json.loads(response.data.decode('utf-8'))
         self.assertTrue('enabled' in data.keys())
+        self.assertEqual(data['error'], False)
+
+    @mock.patch('serverpanel.ext.serverinfo.get', return_value=None)
+    def test_pihole_enabled_fail(self, mocked_get):
+        self.app.extensions['flask-serverinfo'].pihole_enabled = True
+        self.app.extensions['flask-serverinfo'].pihole_api = ''
+
+        response = self.client.get('/api/pihole/stats')
+        self.assert200(response)
+
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue('enabled' in data.keys())
+        self.assertEqual(data['error'], True)
 
 
 if __name__ == '__main__':

@@ -161,7 +161,8 @@ class ServerInfo:
                 "blocked_domains": 0,
                 "dns_queries_today": 0,
                 "ads_blocked_today": 0,
-                "ads_percentage_today": 0
+                "ads_percentage_today": 0,
+                "error": False
             }
             try:
                 data = json.loads(get(self.pihole_api).text)
@@ -171,11 +172,12 @@ class ServerInfo:
                     "blocked_domains": data['domains_being_blocked'],
                     "dns_queries_today": data['dns_queries_today'],
                     "ads_blocked_today": data['ads_blocked_today'],
-                    "ads_percentage_today": float(data['ads_percentage_today'])
+                    "ads_percentage_today": float(data['ads_percentage_today']),
+                    "error": False
                 }
             except:
-                pass
+                stats["error"] = True
 
             return stats
         else:
-            return {"enabled": False}
+            return {"enabled": False, "error": False}
