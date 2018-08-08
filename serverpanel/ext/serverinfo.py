@@ -10,6 +10,7 @@ import json
 import os
 import random
 
+
 class ServerInfo:
     def __init__(self, app=None):
         self.server_type = None
@@ -17,9 +18,9 @@ class ServerInfo:
         self.pihole_enabled = False
         self.pihole_api = None
 
-        self.cpu_temp = '/sys/class/thermal/thermal_zone0/temp'
+        self.cpu_temp = None
 
-        self.external_network = 'http://ipinfo.io/json'
+        self.external_network = None
 
         if app is not None:
             self.init_app(app)
@@ -31,6 +32,9 @@ class ServerInfo:
         self.server_type = platform.system()
         self.pihole_enabled = app.config['ENABLE_PIHOLE'] if 'ENABLE_PIHOLE' in app.config.keys() else False
         self.pihole_api = app.config['PIHOLE_API'] if 'PIHOLE_API' in app.config.keys() else None
+
+        self.cpu_temp = app.config['CPU_TEMP'] if 'CPU_TEMP' in app.config.keys() else None
+        self.external_network = app.config['GEOLOCATOR'] if 'GEOLOCATOR' in app.config.keys() else None
 
         self.testing = app.config['TESTING']
 
