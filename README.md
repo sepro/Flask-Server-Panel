@@ -44,7 +44,7 @@ Configure Flask-Server-Panel
 
 Run tests and run app
 
-    python run_tests.py
+    python tests.py
     
     python run.py
 
