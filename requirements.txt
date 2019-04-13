@@ -1,5 +1,5 @@
 blinker==1.4
-certifi==2018.4.16
+certifi==2019.3.9
 chardet==3.0.4
 click==6.7
 codecov==2.0.15
@@ -7,14 +7,14 @@ coverage==4.5.1
 Flask==1.0.2
 Flask-Compress==1.4.0
 Flask-Testing==0.7.1
-idna==2.7
+idna==2.8
 itsdangerous==0.24
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 psutil==5.6.1
 PyExecJS==1.5.1
-requests==2.19.1
+requests==2.21.0
 six==1.11.0
 uptime==3.0.1
-urllib3==1.23
+urllib3==1.24.1
 Werkzeug==0.14.1
