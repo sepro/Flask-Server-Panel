@@ -16,5 +16,5 @@ PyExecJS==1.5.1
 requests==2.21.0
 six==1.11.0
 uptime==3.0.1
-urllib3==1.24.1
+urllib3==1.24.2
 Werkzeug==0.14.1
