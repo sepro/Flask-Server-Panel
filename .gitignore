@@ -108,3 +108,4 @@ $RECYCLE.BIN/
 .idea/.name
 
 node_modules/
+venv/
